@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AROHA - UI Design Templates & Showcase</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .logo-glow { 
+      filter: drop-shadow(0 0 20px rgba(124, 58, 237, 0.6)) drop-shadow(0 0 35px rgba(45, 212, 191, 0.5)); 
+    }
+
+    /* THEME 1: AURORA CYBER-GLASS */
+    .theme-aurora-glass {
+      background-color: #050711;
+      color: #f1f5f9;
+    }
+    .theme-aurora-glass .glass-card {
+      background: linear-gradient(180deg, rgba(20, 26, 48, 0.72) 0%, rgba(13, 17, 34, 0.88) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(28px);
+      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      border-radius: 1.25rem;
+    }
+    .theme-aurora-glass .btn-primary {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #7c3aed 100%);
+      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      border-radius: 0.85rem;
+    }
+
+    /* THEME 2: PRISM MINIMAL (LINEAR STYLE) */
+    .theme-prism-minimal {
+      background-color: #08090d;
+      color: #f8fafc;
+    }
+    .theme-prism-minimal .glass-card {
+      background: #0d0f17;
+      border: 1px solid #1e2235;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.9);
+      border-radius: 0.75rem;
+    }
+    .theme-prism-minimal .glass-card:hover {
+      border-color: #2dd4bf;
+    }
+    .theme-prism-minimal .btn-primary {
+      background: #0f172a;
+      border: 1px solid #2dd4bf;
+      color: #2dd4bf;
+      box-shadow: 0 0 15px rgba(45, 212, 191, 0.2);
+      border-radius: 0.6rem;
+    }
+    .theme-prism-minimal .btn-primary:hover {
+      background: #2dd4bf;
+      color: #08090d;
+    }
+
+    /* THEME 3: HYBRID BLEND */
+    .theme-hybrid {
+      background-color: #060813;
+      color: #f8fafc;
+    }
+    .theme-hybrid .glass-card {
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.85) 0%, rgba(10, 15, 30, 0.95) 100%);
+      border: 1px solid rgba(129, 140, 248, 0.2);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 45px -12px rgba(6, 8, 19, 0.9), inset 0 1px 0 rgba(45, 212, 191, 0.15);
+      border-radius: 1rem;
+    }
+    .theme-hybrid .btn-primary {
+      background: linear-gradient(135deg, #0d9488 0%, #4f46e5 50%, #9333ea 100%);
+      box-shadow: 0 4px 22px rgba(99, 102, 241, 0.4);
+      border-radius: 0.75rem;
+    }
+
+    .svg-gradient-border {
+      position: relative;
+    }
+    .svg-gradient-border::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, #2dd4bf, #818cf8, #c084fc);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body id="previewBody" class="min-h-screen theme-aurora-glass pb-20 relative overflow-x-hidden transition-all duration-300">
+
+  <!-- BACKGROUND AURORA BLURS -->
+  <div id="ambientOrbs" class="fixed inset-0 overflow-hidden pointer-events-none z-0 transition-opacity duration-500">
+    <div class="absolute top-[10%] -left-32 w-[34rem] h-[48rem] bg-gradient-to-r from-[#6d28d9] via-[#7c3aed] to-[#3b82f6] opacity-60 rounded-full blur-[110px]"></div>
+    <div class="absolute -top-16 right-[10%] w-[38rem] h-[22rem] bg-gradient-to-r from-[#a855f7] via-[#818cf8] to-[#06b6d4] opacity-70 rounded-full blur-[105px]"></div>
+    <div class="absolute top-[35%] -right-24 w-[28rem] h-[34rem] bg-gradient-to-br from-[#38bdf8] to-[#2dd4bf] opacity-50 rounded-full blur-[100px]"></div>
+  </div>
+
+  <!-- FLOATING INTERACTIVE TEMPLATE SELECTOR -->
+  <header class="sticky top-0 z-50 backdrop-blur-2xl bg-slate-950/80 border-b border-white/10 px-4 py-3 shadow-2xl">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      
+      <!-- Logo & Title -->
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 flex items-center justify-center logo-glow">
+          <svg viewBox="0 0 100 100" class="w-full h-full">
+            <defs>
+              <linearGradient id="navLogoGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#2dd4bf" />
+                <stop offset="50%" stop-color="#818cf8" />
+                <stop offset="100%" stop-color="#c084fc" />
+              </linearGradient>
+            </defs>
+            <path d="M 50 10 L 15 85 L 32 85 L 50 48 L 68 85 L 85 85 Z" fill="none" stroke="url(#navLogoGrad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M 30 75 L 70 35 M 70 35 H 52 M 70 35 V 53" fill="none" stroke="url(#navLogoGrad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="50" cy="10" r="4" fill="#2dd4bf" />
+            <circle cx="15" cy="85" r="4" fill="#2dd4bf" />
+            <circle cx="85" cy="85" r="4" fill="#c084fc" />
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-sm font-black tracking-wider text-white">AROHA DESIGN LAB</span>
+            <span class="text-[10px] uppercase font-bold text-teal-300 bg-teal-500/10 border border-teal-500/30 px-2 py-0.5 rounded-full">Live Interactive Showcase</span>
+          </div>
+          <p class="text-[11px] text-slate-400">Click any template below to test the design styles matching the logo</p>
+        </div>
+      </div>
+
+      <!-- 3 Template Switcher Buttons -->
+      <div class="flex items-center bg-slate-900/90 p-1.5 rounded-2xl border border-white/10 shadow-inner space-x-1 w-full md:w-auto justify-center">
+        <button id="btnOpt1" onclick="switchTemplate(1)" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center space-x-2 bg-gradient-to-r from-teal-500/20 via-indigo-500/20 to-purple-500/20 text-teal-300 border border-teal-400/40 shadow-sm">
+          <i class="fa-solid fa-wand-magic-sparkles text-xs"></i>
+          <span>1. Aurora Cyber-Glass</span>
+        </button>
+        <button id="btnOpt2" onclick="switchTemplate(2)" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-white transition flex items-center space-x-2">
+          <i class="fa-solid fa-cube text-xs"></i>
+          <span>2. Prism Minimal (Linear)</span>
+        </button>
+        <button id="btnOpt3" onclick="switchTemplate(3)" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-white transition flex items-center space-x-2">
+          <i class="fa-solid fa-shapes text-xs"></i>
+          <span>3. Hybrid Blend</span>
+        </button>
+      </div>
+
+      <!-- Back to Dashboard Link -->
+      <a href="dashboard.html" class="hidden lg:flex items-center space-x-1.5 text-xs font-bold text-slate-400 hover:text-teal-300 transition">
+        <span>Go to Dashboard</span>
+        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+      </a>
+
+    </div>
+  </header>
+
+  <!-- MAIN SHOWCASE CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 pt-8 relative z-10 space-y-8">
+
+    <!-- Active Template Description Banner -->
+    <div class="glass-card p-5 border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div class="space-y-1">
+        <div class="flex items-center space-x-2.5">
+          <span id="templatePill" class="text-xs font-black uppercase px-2.5 py-0.5 rounded-md bg-teal-400/10 text-teal-300 border border-teal-400/30">Template 1 Active</span>
+          <h1 id="templateTitle" class="text-xl font-black text-white">Aurora Cyber-Glass: Ambient Glow & Dual-Tone Depth</h1>
+        </div>
+        <p id="templateDesc" class="text-xs text-slate-300 max-w-3xl leading-relaxed">
+          Inspired by the cyan-to-purple diagonal arrow of the logo. Features multi-layered frosted glass surfaces, glowing radial blurs, and neon circular telemetry gauges.
+        </p>
+      </div>
+      <div class="flex items-center space-x-2 text-xs font-mono-code text-slate-400 bg-black/40 px-3 py-2 rounded-xl border border-white/5">
+        <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#2dd4bf]"></span>
+        <span>#2dd4bf</span>
+        <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#818cf8] ml-2"></span>
+        <span>#818cf8</span>
+        <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#c084fc] ml-2"></span>
+        <span>#c084fc</span>
+      </div>
+    </div>
+
+    <!-- LIVE INTERACTIVE DASHBOARD SECTION -->
+    <section class="space-y-6">
+
+      <!-- TOP METRIC & BENCHMARK ROW (BENTO GRID) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- 1. SKILL READINESS / RADAR WIDGET (5 Cols) -->
+        <div class="lg:col-span-5 glass-card p-6 flex flex-col justify-between relative overflow-hidden">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-8 h-8 rounded-lg bg-teal-400/10 border border-teal-400/30 flex items-center justify-center text-teal-300 text-sm">
+                <i class="fa-solid fa-gauge-high"></i>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-white">Verified Skill Readiness</h3>
+                <p class="text-[11px] text-slate-400">Target Role: Frontend Developer</p>
+              </div>
+            </div>
+            <span class="text-xs font-mono-code font-bold text-teal-300 bg-teal-500/10 px-2 py-0.5 rounded-lg border border-teal-500/20">Active</span>
+          </div>
+
+          <!-- DYNAMIC GAUGE / RADAR CONTAINER -->
+          <div id="readinessDisplayArea" class="my-auto py-2">
+            <!-- Rendered dynamically by switchTemplate -->
+          </div>
+
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs">
+            <span class="text-slate-400">Next Target: <strong class="text-white">React State Architecture</strong></span>
+            <span class="text-amber-400 font-bold">+250 XP to Level 4</span>
+          </div>
+        </div>
+
+        <!-- 2. ACTIVE CODE ARENA QUEST (4 Cols) -->
+        <div class="lg:col-span-4 glass-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] uppercase font-bold text-purple-300 bg-purple-500/10 border border-purple-500/30 px-2 py-0.5 rounded">Featured Quest</span>
+              <span class="text-xs font-mono font-bold text-amber-300 flex items-center">
+                <i class="fa-solid fa-bolt mr-1 text-amber-400"></i> +200 XP
+              </span>
+            </div>
+            <h4 class="text-base font-extrabold text-white mb-1.5">Reverse Singly Linked List</h4>
+            <p class="text-xs text-slate-400 leading-relaxed mb-4">
+              Implement in-place iterative reversal of a singly linked list in C++ without auxiliary heap buffer.
+            </p>
+
+            <!-- Code Preview Box -->
+            <div class="bg-black/60 border border-white/10 rounded-xl p-3 font-mono-code text-[11px] text-slate-300 space-y-1 mb-4">
+              <div class="text-teal-400">// C++ Function Signature</div>
+              <div class="text-slate-200"><span class="text-purple-400">ListNode*</span> reverseList(<span class="text-purple-400">ListNode*</span> head);</div>
+              <div class="text-slate-500 text-[10px]">// Tests: [1, 2, 3, 4, 5] -> [5, 4, 3, 2, 1]</div>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-2 pt-2">
+            <a href="learn.html?lang=cpp" class="flex-1 py-2.5 btn-primary text-white text-xs font-bold text-center transition flex items-center justify-center space-x-1.5">
+              <span>Open Arena</span>
+              <i class="fa-solid fa-terminal text-[10px]"></i>
+            </a>
+            <button onclick="alert('Solution preview unlocked in Learn Arena')" class="px-3 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 text-xs font-semibold">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. CAREER MATCH & MARKET COMPATIBILITY (3 Cols) -->
+        <div class="lg:col-span-3 glass-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] uppercase font-bold text-teal-300 bg-teal-500/10 border border-teal-500/30 px-2 py-0.5 rounded">Live Match</span>
+              <span class="text-xs font-bold text-teal-300">Top 5%</span>
+            </div>
+
+            <div class="flex items-center space-x-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-white text-black flex items-center justify-center font-black text-sm shadow">
+                ▲
+              </div>
+              <div>
+                <h5 class="text-xs font-bold text-white">Frontend Engineer</h5>
+                <p class="text-[11px] text-slate-400">Vercel • Remote</p>
+              </div>
+            </div>
+
+            <div class="space-y-2 mb-4">
+              <div class="flex justify-between text-xs">
+                <span class="text-slate-400">Compatibility:</span>
+                <span class="font-bold text-teal-300 font-mono">92%</span>
+              </div>
+              <div class="w-full bg-slate-950 rounded-full h-1.5 overflow-hidden">
+                <div class="bg-gradient-to-r from-teal-400 to-indigo-500 h-1.5 rounded-full" style="width: 92%"></div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 bg-teal-400/10 border border-teal-400/20 text-teal-300 text-[10px] font-mono rounded">HTML5</span>
+              <span class="px-2 py-0.5 bg-teal-400/10 border border-teal-400/20 text-teal-300 text-[10px] font-mono rounded">CSS3</span>
+              <span class="px-2 py-0.5 bg-indigo-400/10 border border-indigo-400/20 text-indigo-300 text-[10px] font-mono rounded">JavaScript</span>
+              <span class="px-2 py-0.5 bg-purple-400/10 border border-purple-400/20 text-purple-300 text-[10px] font-mono rounded">React</span>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-white/10 text-center">
+            <span class="text-[11px] text-slate-400 font-medium">$95k - $120k / year</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ROADMAP TIMELINE ROW -->
+      <div class="glass-card p-6">
+        <div class="flex items-center justify-between mb-6 flex-wrap gap-2">
+          <div>
+            <span class="text-[10px] uppercase font-bold tracking-wider text-teal-300">Adaptive Milestone Path</span>
+            <h3 class="text-base font-extrabold text-white">Personalized Engineering Roadmap</h3>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xs text-slate-400">Standard Pace: <strong class="text-teal-300">12 Weeks</strong></span>
+            <button onclick="alert('Roadmap AI generation is active in Dashboard')" class="px-3 py-1.5 rounded-xl bg-indigo-600/30 border border-indigo-500/40 text-teal-200 text-xs font-semibold hover:bg-indigo-600/50 transition">
+              <i class="fa-solid fa-wand-magic-sparkles mr-1 text-[11px]"></i> Regenerate with AI
+            </button>
+          </div>
+        </div>
+
+        <!-- TIMELINE COMPONENT (Dynamic by template) -->
+        <div id="timelineContainer" class="py-2">
+          <!-- Rendered dynamically by switchTemplate -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SIDE-BY-SIDE HIGH-RES MOCKUPS GALLERY -->
+    <section class="space-y-4 pt-6">
+      <div class="border-t border-white/10 pt-6">
+        <h2 class="text-xl font-black text-white mb-1">Generated Visual Mockups Comparison</h2>
+        <p class="text-xs text-slate-400">Direct design render comparisons crafted around the AROHA logo geometry & color scheme</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Option 1 Card -->
+        <div class="glass-card overflow-hidden group cursor-pointer" onclick="switchTemplate(1)">
+          <div class="relative overflow-hidden aspect-video bg-slate-950">
+            <img src="/aroha_aurora_glass_1790852225193.jpg" alt="Option 1: Aurora Cyber-Glass" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-teal-500/20 text-teal-300 border border-teal-500/40 text-[10px] font-bold uppercase backdrop-blur-md">Option 1</span>
+          </div>
+          <div class="p-4 space-y-1">
+            <h4 class="text-sm font-bold text-white group-hover:text-teal-300 transition">Aurora Cyber-Glass</h4>
+            <p class="text-[11px] text-slate-400 leading-relaxed">Frosted glassmorphism, ambient aurora lighting, dual-tone circular readiness arc.</p>
+          </div>
+        </div>
+
+        <!-- Option 2 Card -->
+        <div class="glass-card overflow-hidden group cursor-pointer" onclick="switchTemplate(2)">
+          <div class="relative overflow-hidden aspect-video bg-slate-950">
+            <img src="/aroha_prism_minimal_1790852249990.jpg" alt="Option 2: Prism Minimal" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 text-[10px] font-bold uppercase backdrop-blur-md">Option 2</span>
+          </div>
+          <div class="p-4 space-y-1">
+            <h4 class="text-sm font-bold text-white group-hover:text-indigo-300 transition">Prism Minimal (Linear)</h4>
+            <p class="text-[11px] text-slate-400 leading-relaxed">High-precision pitch black void, razor hairline borders, developer radar chart & linear roadmap.</p>
+          </div>
+        </div>
+
+        <!-- Option 3 Card -->
+        <div class="glass-card overflow-hidden group cursor-pointer" onclick="switchTemplate(3)">
+          <div class="relative overflow-hidden aspect-video bg-slate-950">
+            <img src="/aroha_hybrid_blend_1790852392330.jpg" alt="Option 3: Hybrid Blend" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
+            <span class="absolute top-3 left-3 px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/40 text-[10px] font-bold uppercase backdrop-blur-md">Option 3</span>
+          </div>
+          <div class="p-4 space-y-1">
+            <h4 class="text-sm font-bold text-white group-hover:text-purple-300 transition">Hybrid Blend</h4>
+            <p class="text-[11px] text-slate-400 leading-relaxed">Combines the circular arc telemetry gauge, the 5-axis skill radar, and Linear timeline nodes.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    let radarChartInstance = null;
+
+    function switchTemplate(option) {
+      const body = document.getElementById('previewBody');
+      const orbs = document.getElementById('ambientOrbs');
+      const pill = document.getElementById('templatePill');
+      const title = document.getElementById('templateTitle');
+      const desc = document.getElementById('templateDesc');
+      const readiness = document.getElementById('readinessDisplayArea');
+      const timeline = document.getElementById('timelineContainer');
+
+      // Update switcher buttons
+      [1, 2, 3].forEach(i => {
+        const btn = document.getElementById('btnOpt' + i);
+        if (i === option) {
+          btn.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center space-x-2 bg-gradient-to-r from-teal-500/20 via-indigo-500/20 to-purple-500/20 text-teal-300 border border-teal-400/40 shadow-sm";
+        } else {
+          btn.className = "px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-white transition flex items-center space-x-2";
+        }
+      });
+
+      if (option === 1) {
+        // OPTION 1: AURORA CYBER-GLASS
+        body.className = "min-h-screen theme-aurora-glass pb-20 relative overflow-x-hidden transition-all duration-300";
+        orbs.style.opacity = "1";
+        pill.textContent = "Template 1 Active";
+        pill.className = "text-xs font-black uppercase px-2.5 py-0.5 rounded-md bg-teal-400/10 text-teal-300 border border-teal-400/30";
+        title.textContent = "Aurora Cyber-Glass: Ambient Glow & Dual-Tone Depth";
+        desc.textContent = "Features multi-layered frosted glass cards, glowing aurora backdrop blurs, and neon circular telemetry gauges reflecting the logo's diagonal vector.";
+
+        readiness.innerHTML = `
+          <div class="flex flex-col items-center justify-center py-2">
+            <div class="relative w-44 h-44 flex items-center justify-center">
+              <svg viewBox="0 0 100 100" class="w-full h-full transform -rotate-90">
+                <circle cx="50" cy="50" r="42" stroke="rgba(255, 255, 255, 0.08)" stroke-width="8" fill="none" />
+                <circle cx="50" cy="50" r="42" stroke="url(#arcGrad1)" stroke-width="8" stroke-dasharray="264" stroke-dashoffset="65" stroke-linecap="round" fill="none" class="transition-all duration-1000" />
+                <defs>
+                  <linearGradient id="arcGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#2dd4bf" />
+                    <stop offset="50%" stop-color="#818cf8" />
+                    <stop offset="100%" stop-color="#c084fc" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                <span class="text-3xl font-black text-white font-mono">76%</span>
+                <span class="text-[10px] uppercase font-bold text-teal-300 tracking-wider">Role Mastery</span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-4 mt-3 text-[11px] text-slate-300">
+              <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-teal-400 mr-1.5"></span> HTML (90%)</span>
+              <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-indigo-400 mr-1.5"></span> JS (75%)</span>
+              <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-purple-400 mr-1.5"></span> React (65%)</span>
+            </div>
+          </div>
+        `;
+
+        timeline.innerHTML = `
+          <div class="relative pt-4 pb-2">
+            <div class="h-1 w-full bg-slate-950 rounded-full overflow-hidden absolute top-8 left-0 z-0">
+              <div class="h-full bg-gradient-to-r from-teal-400 via-indigo-500 to-purple-500 w-3/4"></div>
+            </div>
+            <div class="grid grid-cols-4 gap-2 relative z-10 text-center">
+              <div class="space-y-2">
+                <div class="w-8 h-8 rounded-full bg-teal-400 text-slate-950 flex items-center justify-center font-bold text-xs mx-auto shadow-[0_0_15px_rgba(45,212,191,0.6)]">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="text-xs font-bold text-white">Foundations</div>
+                <div class="text-[10px] text-slate-400">Weeks 1-3 • Complete</div>
+              </div>
+              <div class="space-y-2">
+                <div class="w-8 h-8 rounded-full bg-teal-400 text-slate-950 flex items-center justify-center font-bold text-xs mx-auto shadow-[0_0_15px_rgba(45,212,191,0.6)]">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="text-xs font-bold text-white">DOM & Modern JS</div>
+                <div class="text-[10px] text-slate-400">Weeks 4-6 • Complete</div>
+              </div>
+              <div class="space-y-2">
+                <div class="w-8 h-8 rounded-full bg-indigo-500 text-white flex items-center justify-center font-bold text-xs mx-auto shadow-[0_0_20px_rgba(129,140,248,0.7)] animate-pulse">
+                  3
+                </div>
+                <div class="text-xs font-bold text-teal-300">React Architecture</div>
+                <div class="text-[10px] text-slate-300 font-bold">Weeks 7-9 • In Progress</div>
+              </div>
+              <div class="space-y-2 opacity-50">
+                <div class="w-8 h-8 rounded-full bg-slate-900 border border-white/20 text-slate-400 flex items-center justify-center font-bold text-xs mx-auto">
+                  4
+                </div>
+                <div class="text-xs font-bold text-slate-400">Full Capstone</div>
+                <div class="text-[10px] text-slate-500">Weeks 10-12 • Locked</div>
+              </div>
+            </div>
+          </div>
+        `;
+      } 
+      else if (option === 2) {
+        // OPTION 2: PRISM MINIMAL (LINEAR STYLE)
+        body.className = "min-h-screen theme-prism-minimal pb-20 relative overflow-x-hidden transition-all duration-300";
+        orbs.style.opacity = "0.2";
+        pill.textContent = "Template 2 Active";
+        pill.className = "text-xs font-black uppercase px-2.5 py-0.5 rounded-md bg-indigo-500/10 text-indigo-300 border border-indigo-500/30";
+        title.textContent = "Prism Minimal: High-Precision Linear Engineering";
+        desc.textContent = "Inspired by Linear and Vercel. Features pitch-black void surfaces, razor-sharp hairline borders, 5-axis skill radar polygon, and minimal typography.";
+
+        readiness.innerHTML = `
+          <div class="py-2">
+            <div class="h-44 w-full flex items-center justify-center">
+              <canvas id="radarCanvas" width="220" height="170"></canvas>
+            </div>
+          </div>
+        `;
+        setTimeout(renderRadarChart, 50);
+
+        timeline.innerHTML = `
+          <div class="p-3 bg-slate-950/90 rounded-xl border border-white/10 space-y-3 font-mono-code text-xs">
+            <div class="flex items-center justify-between text-[11px] text-slate-400 border-b border-white/5 pb-2">
+              <span>MILESTONE TRACKER</span>
+              <span class="text-teal-400 font-bold">75% COMPLETE</span>
+            </div>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between p-2 rounded-lg bg-teal-950/20 border border-teal-500/30 text-teal-300">
+                <span class="flex items-center"><i class="fa-solid fa-circle-check mr-2 text-teal-400"></i> M1: HTML5 & Semantic Web</span>
+                <span class="text-[10px] text-slate-400">VERIFIED</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded-lg bg-teal-950/20 border border-teal-500/30 text-teal-300">
+                <span class="flex items-center"><i class="fa-solid fa-circle-check mr-2 text-teal-400"></i> M2: CSS Grid & Flexbox Algorithms</span>
+                <span class="text-[10px] text-slate-400">VERIFIED</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded-lg bg-indigo-950/30 border border-indigo-500/40 text-indigo-200">
+                <span class="flex items-center"><i class="fa-solid fa-spinner fa-spin mr-2 text-indigo-400"></i> M3: Asynchronous JavaScript & REST APIs</span>
+                <span class="text-[10px] text-amber-400">ACTIVE</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded-lg bg-slate-900/40 border border-white/5 text-slate-500">
+                <span class="flex items-center"><i class="fa-regular fa-circle mr-2"></i> M4: React Component State Trees</span>
+                <span class="text-[10px]">PENDING</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      else if (option === 3) {
+        // OPTION 3: HYBRID BLEND
+        body.className = "min-h-screen theme-hybrid pb-20 relative overflow-x-hidden transition-all duration-300";
+        orbs.style.opacity = "0.75";
+        pill.textContent = "Template 3 Active";
+        pill.className = "text-xs font-black uppercase px-2.5 py-0.5 rounded-md bg-purple-500/10 text-purple-300 border border-purple-500/30";
+        title.textContent = "Hybrid Blend: Circular Arc Gauge + Linear Milestone Track";
+        desc.textContent = "Combines the vibrant glowing circular telemetry arc from Option 1 with the structured Linear-style milestone timeline and skill radar from Option 2.";
+
+        readiness.innerHTML = `
+          <div class="grid grid-cols-2 gap-2 items-center py-2">
+            <!-- Left: Arc Gauge -->
+            <div class="relative w-36 h-36 mx-auto flex items-center justify-center">
+              <svg viewBox="0 0 100 100" class="w-full h-full transform -rotate-90">
+                <circle cx="50" cy="50" r="40" stroke="rgba(255, 255, 255, 0.08)" stroke-width="8" fill="none" />
+                <circle cx="50" cy="50" r="40" stroke="url(#arcGrad3)" stroke-width="8" stroke-dasharray="251" stroke-dashoffset="55" stroke-linecap="round" fill="none" />
+                <defs>
+                  <linearGradient id="arcGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#2dd4bf" />
+                    <stop offset="50%" stop-color="#818cf8" />
+                    <stop offset="100%" stop-color="#c084fc" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                <span class="text-2xl font-black text-white font-mono">78%</span>
+                <span class="text-[9px] uppercase font-bold text-teal-300">Ready</span>
+              </div>
+            </div>
+            <!-- Right: Radar Preview -->
+            <div class="h-36 flex items-center justify-center">
+              <canvas id="radarCanvas" width="160" height="140"></canvas>
+            </div>
+          </div>
+        `;
+        setTimeout(renderRadarChart, 50);
+
+        timeline.innerHTML = `
+          <div class="p-3 bg-slate-950/80 rounded-xl border border-indigo-500/20 space-y-4">
+            <!-- Interactive Linear Step Track -->
+            <div class="relative pt-3 pb-1">
+              <div class="h-1.5 w-full bg-slate-900 rounded-full overflow-hidden absolute top-6 left-0 z-0">
+                <div class="h-full bg-gradient-to-r from-teal-400 via-indigo-500 to-purple-500 w-3/4"></div>
+              </div>
+              <div class="grid grid-cols-4 gap-2 relative z-10 text-center">
+                <div>
+                  <div class="w-7 h-7 rounded-full bg-teal-400 text-slate-950 flex items-center justify-center font-bold text-xs mx-auto shadow-[0_0_12px_rgba(45,212,191,0.5)]"><i class="fa-solid fa-check text-[10px]"></i></div>
+                  <span class="text-[11px] font-bold text-white block mt-1">Core Web</span>
+                </div>
+                <div>
+                  <div class="w-7 h-7 rounded-full bg-teal-400 text-slate-950 flex items-center justify-center font-bold text-xs mx-auto shadow-[0_0_12px_rgba(45,212,191,0.5)]"><i class="fa-solid fa-check text-[10px]"></i></div>
+                  <span class="text-[11px] font-bold text-white block mt-1">Async JS</span>
+                </div>
+                <div>
+                  <div class="w-7 h-7 rounded-full bg-indigo-500 text-white flex items-center justify-center font-bold text-xs mx-auto shadow-[0_0_15px_rgba(129,140,248,0.7)] animate-pulse">3</div>
+                  <span class="text-[11px] font-bold text-teal-300 block mt-1">React APIs</span>
+                </div>
+                <div class="opacity-40">
+                  <div class="w-7 h-7 rounded-full bg-slate-900 border border-white/20 text-slate-400 flex items-center justify-center font-bold text-xs mx-auto">4</div>
+                  <span class="text-[11px] font-bold text-slate-400 block mt-1">Full Deploy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function renderRadarChart() {
+      const canvas = document.getElementById('radarCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (radarChartInstance) radarChartInstance.destroy();
+
+      radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ['Frontend', 'Backend', 'DevOps', 'Data', 'Systems'],
+          datasets: [{
+            data: [85, 70, 45, 60, 75],
+            backgroundColor: 'rgba(45, 212, 191, 0.25)',
+            borderColor: '#2dd4bf',
+            pointBackgroundColor: '#c084fc',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: '#818cf8',
+            borderWidth: 2,
+            pointRadius: 3
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            r: {
+              angleLines: { color: 'rgba(255, 255, 255, 0.08)' },
+              grid: { color: 'rgba(255, 255, 255, 0.08)' },
+              pointLabels: { color: '#94a3b8', font: { size: 9, weight: '700' } },
+              ticks: { display: false, max: 100 }
+            }
+          }
+        }
+      });
+    }
+
+    // Initialize with Template 1 on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      switchTemplate(1);
+    });
+  </script>
+</body>
+</html>

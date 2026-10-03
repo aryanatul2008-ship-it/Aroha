@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AROHA - Algorithmic Arenas & Micro-Quests</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #050711;
+      color: #f1f5f9;
+    }
+
+    .aurora-header-glass {
+      background: rgba(10, 14, 28, 0.85);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+    }
+
+    .aurora-glass-card {
+      background: linear-gradient(180deg, rgba(20, 26, 48, 0.72) 0%, rgba(13, 17, 34, 0.85) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6);
+      transition: all 0.25s ease;
+    }
+    .aurora-glass-card:hover {
+      border-color: rgba(168, 85, 247, 0.35);
+      box-shadow: 0 12px 35px -5px rgba(99, 102, 241, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .btn-aurora-purple {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #7c3aed 100%);
+      box-shadow: 0 4px 18px rgba(124, 58, 237, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-aurora-purple:hover {
+      box-shadow: 0 6px 25px rgba(139, 92, 246, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body id="appBody" class="min-h-screen flex flex-col font-sans relative overflow-x-hidden">
+
+  <!-- UNIFIED HIGH-SATURATION AURORA BACKGROUND NODES -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="absolute top-[18%] -left-32 w-[34rem] h-[48rem] bg-gradient-to-r from-[#6d28d9] via-[#7c3aed] to-[#3b82f6] opacity-75 rounded-[45%] blur-[100px] transform rotate-12"></div>
+    <div class="absolute -top-16 right-[8%] w-[38rem] h-[22rem] bg-gradient-to-r from-[#a855f7] via-[#818cf8] to-[#06b6d4] opacity-80 rounded-[50%] blur-[95px] transform -rotate-6"></div>
+    <div class="absolute top-[22%] -right-24 w-[28rem] h-[34rem] bg-gradient-to-br from-[#e0f2fe] via-[#38bdf8] to-[#2dd4bf] opacity-65 rounded-[50%] blur-[90px]"></div>
+    <div class="absolute bottom-[4%] -right-16 w-[26rem] h-[26rem] bg-[#06b6d4]/50 rounded-full blur-[110px]"></div>
+    <div class="absolute -bottom-6 left-[30%] w-[26rem] h-12 bg-gradient-to-r from-[#22d3ee] via-[#a855f7] to-[#ec4899] rounded-full blur-[36px] opacity-90"></div>
+  </div>
+
+  <header class="sticky top-0 z-40 aurora-header-glass">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between relative z-10">
+      <div class="flex items-center space-x-3">
+        <!-- Return directly to the Learning tab of dashboard.html -->
+        <a href="dashboard.html#learning" onclick="returnToDashboardTracks(event)" class="flex items-center space-x-2 text-teal-300 hover:text-teal-200 text-xs font-bold bg-teal-500/10 border border-teal-500/30 px-3.5 py-1.5 rounded-xl transition">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Back to Tracks</span>
+        </a>
+      </div>
+      <span class="text-sm font-black tracking-wider bg-gradient-to-r from-[#22d3ee] via-[#818cf8] to-[#c084fc] bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(45,212,191,0.5)]">AROHA ARENAS</span>
+      <span class="text-xs bg-teal-500/10 text-teal-300 border border-teal-500/30 px-3 py-1 rounded-xl font-bold font-mono">
+        <i class="fa-solid fa-trophy mr-1 text-amber-400"></i> Earned: <span id="xpDisplay">0</span> XP
+      </span>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 space-y-6 relative z-10">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div>
+        <h1 id="pageTitle" class="text-2xl font-black text-white tracking-tight">Language Micro-Quests & Arenas</h1>
+        <p class="text-xs text-slate-400 mt-1">Select any track below to filter exercises. Each language features unique, category-specific problems.</p>
+      </div>
+
+      <div class="flex space-x-2 border-b border-white/10 pb-2 overflow-x-auto w-full md:w-auto">
+        <button onclick="filterQuests('All')" class="q-filter px-3.5 py-1.5 rounded-xl text-xs font-bold btn-aurora-purple text-white shadow-sm">All</button>
+        <button onclick="filterQuests('C++')" class="q-filter px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900/80 text-slate-400 hover:text-white border border-white/10 transition">C++</button>
+        <button onclick="filterQuests('C')" class="q-filter px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900/80 text-slate-400 hover:text-white border border-white/10 transition">C</button>
+        <button onclick="filterQuests('Python')" class="q-filter px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900/80 text-slate-400 hover:text-white border border-white/10 transition">Python</button>
+        <button onclick="filterQuests('Java')" class="q-filter px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900/80 text-slate-400 hover:text-white border border-white/10 transition">Java</button>
+        <button onclick="filterQuests('JavaScript')" class="q-filter px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900/80 text-slate-400 hover:text-white border border-white/10 transition">JavaScript</button>
+        <button onclick="filterQuests('HTML')" class="q-filter px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900/80 text-slate-400 hover:text-white border border-white/10 transition">HTML</button>
+        <button onclick="filterQuests('CSS')" class="q-filter px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900/80 text-slate-400 hover:text-white border border-white/10 transition">CSS</button>
+      </div>
+    </div>
+
+    <div id="questGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+  </main>
+
+  <!-- STATEMENT-WISE QUEST ARENA MODAL -->
+  <div id="questModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900/95 backdrop-blur-2xl border border-white/15 text-slate-100 max-w-3xl w-full rounded-3xl p-6 space-y-5 shadow-2xl max-h-[95vh] overflow-y-auto">
+      
+      <div class="flex justify-between items-center border-b border-white/10 pb-3">
+        <div>
+          <span id="qmTag" class="text-xs font-bold text-teal-400 uppercase tracking-wider">Competitive Programming Arena</span>
+          <h3 id="qmTitle" class="font-bold text-lg text-white mt-0.5">Problem Statement</h3>
+        </div>
+        <button onclick="closeQuestModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <!-- Problem Statement & Description Panel with Scrolling and True Line-Breaks -->
+      <div class="space-y-3 bg-slate-950/80 p-4 rounded-xl border border-white/10 text-xs">
+        <div id="qmDesc" class="text-slate-300 leading-relaxed whitespace-pre-line max-h-64 overflow-y-auto pr-2"></div>
+        <div class="space-y-1 pt-2 border-t border-white/5">
+          <div class="flex justify-between items-center">
+            <span class="font-bold text-teal-300 uppercase text-[10px] tracking-wider">Example:</span>
+            <span id="qmExpectedBadge" class="hidden text-[10px] font-mono text-purple-300 bg-purple-500/10 border border-purple-500/20 px-2 py-0.5 rounded">
+              Expected Output: <span id="qmExpectedVal" class="text-teal-300 font-bold font-mono"></span>
+            </span>
+          </div>
+          <div id="qmExample" class="font-mono bg-slate-900/90 p-3 rounded-lg border border-white/10 text-teal-300 whitespace-pre-line text-[11px] leading-relaxed"></div>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <div class="flex justify-between items-center">
+          <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider">Your Code Solution</label>
+          <button onclick="toggleHint()" class="text-xs text-teal-400 hover:underline"><i class="fa-solid fa-lightbulb mr-1"></i>Need a Hint?</button>
+        </div>
+        <textarea id="questCodeInput" rows="7" placeholder="// Type your solution code here..." class="w-full bg-slate-950/80 border border-white/10 rounded-xl p-3 font-mono text-xs text-emerald-400 focus:outline-none focus:border-cyan-400 shadow-inner" spellcheck="false"></textarea>
+      </div>
+
+      <!-- Test Input (stdin) -->
+      <div class="space-y-1">
+        <div class="flex justify-between items-center">
+          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+            <i class="fa-solid fa-terminal mr-1 text-teal-400"></i> Standard Input (stdin)
+          </label>
+          <span class="text-[10px] text-slate-400">Fed to standard input during execution</span>
+        </div>
+        <textarea id="questTestInput" rows="2" placeholder="Standard input (stdin) for program..." class="w-full bg-slate-950/80 border border-white/10 rounded-xl p-2.5 font-mono text-xs text-slate-300 focus:outline-none focus:border-cyan-400 shadow-inner" spellcheck="false"></textarea>
+      </div>
+
+      <div id="solutionBox" class="hidden space-y-2 bg-teal-950/30 border border-teal-500/30 p-4 rounded-xl text-xs">
+        <span class="font-bold text-teal-300 uppercase tracking-wider"><i class="fa-solid fa-unlock mr-1"></i> Reference Solution Unlocked</span>
+        <pre id="qmSolutionCode" class="font-mono bg-slate-950/80 p-3 rounded-lg border border-teal-800/40 text-amber-300 overflow-x-auto text-[11px] leading-relaxed"></pre>
+      </div>
+
+      <div id="questFeedback" class="hidden p-3 rounded-xl text-xs font-medium"></div>
+
+      <!-- AI HINT CONTAINER -->
+      <div id="aiHintBox" class="hidden space-y-2 bg-gradient-to-br from-indigo-950/60 via-purple-950/40 to-slate-950 border border-purple-500/40 p-4 rounded-xl text-xs shadow-lg">
+        <div class="flex items-center justify-between border-b border-purple-500/20 pb-2">
+          <span class="font-bold text-purple-300 uppercase tracking-wider flex items-center text-[11px]">
+            <i class="fa-solid fa-wand-magic-sparkles mr-2 text-teal-300"></i> AI MENTOR
+          </span>
+          <button onclick="closeAiHintBox()" class="text-slate-400 hover:text-white p-1 transition"><i class="fa-solid fa-xmark text-sm"></i></button>
+        </div>
+        <div id="aiHintContent" class="text-slate-200 leading-relaxed font-normal text-xs pt-1"></div>
+      </div>
+
+      <div class="flex justify-between items-center pt-2 border-t border-white/10 flex-wrap gap-2">
+        <div class="flex items-center space-x-2">
+          <button onclick="revealSolution()" class="px-3.5 py-2 text-xs font-bold rounded-xl border border-amber-500/30 text-amber-400 hover:bg-amber-500/10 transition">
+            <i class="fa-solid fa-eye mr-1"></i> View Solution
+          </button>
+          <button id="footerAiHintBtn" onclick="requestAiHint()" class="ai-hint-btn px-3.5 py-2 text-xs font-bold rounded-xl bg-purple-500/15 hover:bg-purple-500/25 border border-purple-500/30 text-purple-300 transition flex items-center space-x-1.5 shadow">
+            <i class="fa-solid fa-wand-magic-sparkles text-teal-300"></i>
+            <span>AI Hint</span>
+          </button>
+        </div>
+        <div class="flex space-x-3">
+          <button onclick="closeQuestModal()" class="px-4 py-2 text-xs font-bold rounded-xl border border-slate-700 text-slate-300 hover:bg-slate-800 transition">Close</button>
+          <button id="runTestCasesBtn" onclick="runQuestTestCases()" class="px-5 py-2 text-xs font-bold rounded-xl btn-aurora-purple text-white flex items-center space-x-2 shadow-md">
+            <i class="fa-solid fa-play"></i><span>Run in Sandbox</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentXP = 0;
+    let activeQuestFilter = 'All';
+    let currentOpenQuestId = null;
+    let languageQuests = [];
+    let currentLanguageScores = {
+      'C': 15, 'C++': 15, 'Python': 15, 'Java': 15, 'JavaScript': 40, 'HTML': 40, 'CSS': 40
+    };
+
+    function returnToDashboardTracks(e) {
+      e.preventDefault();
+      // Store flag so dashboard switches directly to learning tab upon loading
+      localStorage.setItem('aroha_active_tab', 'learning');
+      window.location.replace('dashboard.html');
+    }
+
+    async function loadArenas() {
+      try {
+        const response = await fetch('questions.json');
+        if (response.ok) {
+          const data = await response.json();
+          languageQuests = data.arenas || [];
+        }
+      } catch (e) {
+        console.error("Could not fetch questions.json:", e);
+      }
+
+      const completedIds = JSON.parse(localStorage.getItem('aroha_completed_quests') || '[]');
+      languageQuests.forEach(q => {
+        if (completedIds.includes(q.id)) q.completed = true;
+      });
+
+      renderQuests();
+    }
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      // Load user progress from API
+      try {
+        const resp = await fetch('/api/me', { credentials: 'include' });
+        if (resp.ok) {
+          const data = await resp.json();
+          const user = data.user;
+          if (user.xp !== undefined && user.xp !== null) currentXP = user.xp;
+          if (user.completed_quests && user.completed_quests.length > 0) {
+            localStorage.setItem('aroha_completed_quests', JSON.stringify(user.completed_quests));
+          }
+          if (user.language_scores) {
+            let parsed = user.language_scores;
+            if (typeof parsed === 'string') {
+              try { parsed = JSON.parse(parsed); } catch (e) {}
+            }
+            if (parsed && typeof parsed === 'object') {
+              currentLanguageScores = { ...currentLanguageScores, ...parsed };
+            }
+          }
+          document.getElementById('xpDisplay').textContent = currentXP;
+        }
+      } catch (err) {
+        console.warn('API unavailable, using localStorage fallback.', err);
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const langParam = urlParams.get('lang');
+      if (langParam) {
+        if (langParam === 'cpp') activeQuestFilter = 'C++';
+        else if (langParam === 'c') activeQuestFilter = 'C';
+        else if (langParam === 'python') activeQuestFilter = 'Python';
+        else if (langParam === 'java') activeQuestFilter = 'Java';
+        else if (langParam === 'javascript') activeQuestFilter = 'JavaScript';
+        else if (langParam === 'html') activeQuestFilter = 'HTML';
+        else if (langParam === 'css') activeQuestFilter = 'CSS';
+      }
+      
+      highlightFilterButton(activeQuestFilter);
+      loadArenas();
+    });
+
+    function highlightFilterButton(lang) {
+      document.querySelectorAll('.q-filter').forEach(btn => {
+        const text = btn.textContent.trim();
+        const matches = (lang === 'C++' && text === 'C++') || 
+                        (lang === 'C' && text === 'C') ||
+                        (lang === 'Python' && text === 'Python') || 
+                        (lang === 'Java' && text === 'Java') || 
+                        (lang === 'JavaScript' && text === 'JavaScript') || 
+                        (lang === 'HTML' && text === 'HTML') ||
+                        (lang === 'CSS' && text === 'CSS') ||
+                        (lang === 'All' && text === 'All');
+        btn.className = matches ? "q-filter px-3.5 py-1.5 rounded-xl text-xs font-bold btn-aurora-purple text-white shadow-sm" : "q-filter px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900/80 text-slate-400 hover:text-white border border-white/10 transition";
+      });
+    }
+
+    function renderQuests() {
+      const grid = document.getElementById('questGrid');
+      grid.innerHTML = '';
+      const filtered = languageQuests.filter(q => activeQuestFilter === 'All' || q.lang === activeQuestFilter);
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full aurora-glass-card p-8 rounded-2xl text-center space-y-2">
+            <p class="text-sm font-bold text-slate-300">No active quests found for ${activeQuestFilter}.</p>
+            <p class="text-xs text-slate-500">Check back soon or select another category above.</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(q => {
+        const levelColor = q.level === 'Easy' ? 'text-emerald-400' : q.level === 'Medium' ? 'text-amber-400' : 'text-rose-400';
+        const card = document.createElement('div');
+        card.className = `aurora-glass-card p-5 rounded-2xl flex flex-col justify-between space-y-4 shadow-md`;
+
+        const summarySnippet = q.desc.split('\n')[0] || q.desc;
+
+        card.innerHTML = `
+          <div class="space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="text-[10px] font-bold bg-teal-500/10 text-teal-300 border border-teal-500/30 px-2 py-0.5 rounded-md uppercase font-mono">${q.lang} · <span class="${levelColor}">${q.level}</span></span>
+              <span class="text-xs font-bold text-amber-400"><i class="fa-solid fa-bolt mr-1"></i>+${q.xp} XP</span>
+            </div>
+            <h3 class="font-bold text-base text-white tracking-tight">${q.title}</h3>
+            <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">${summarySnippet}</p>
+          </div>
+          <div class="pt-2 flex justify-between items-center text-xs border-t border-white/5">
+            <span class="${q.completed ? 'text-emerald-400 font-bold' : 'text-slate-400'}">
+              ${q.completed ? '<i class="fa-solid fa-circle-check mr-1"></i> Solved' : 'Status: Unsolved'}
+            </span>
+            <button onclick="openQuestModal(${q.id})" class="px-4 py-2 btn-aurora-purple text-white rounded-xl font-bold transition flex items-center space-x-1.5 shadow">
+              <i class="fa-solid fa-code"></i><span>Solve Problem</span>
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterQuests(lang) {
+      activeQuestFilter = lang;
+      highlightFilterButton(lang);
+      renderQuests();
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      const div = document.createElement('div');
+      div.appendChild(document.createTextNode(str));
+      return div.innerHTML;
+    }
+
+    function openQuestModal(id) {
+      currentOpenQuestId = id;
+      const q = languageQuests.find(item => item.id === id);
+      if (!q) return;
+
+      document.getElementById('qmTag').textContent = `${q.lang} • ${q.level} Arena`;
+      document.getElementById('qmTitle').textContent = q.title;
+      document.getElementById('qmDesc').textContent = q.desc;
+      document.getElementById('qmExample').textContent = q.example;
+
+      const expectedBadge = document.getElementById('qmExpectedBadge');
+      const expectedVal = document.getElementById('qmExpectedVal');
+      if (q.expectedOutput) {
+        if (expectedBadge) expectedBadge.classList.remove('hidden');
+        if (expectedVal) expectedVal.textContent = q.expectedOutput;
+      } else if (expectedBadge) {
+        expectedBadge.classList.add('hidden');
+      }
+
+      document.getElementById('questCodeInput').value = '';
+
+      // Extract sample input from example if available
+      let sampleInput = '';
+      if (q.example) {
+        const match = q.example.match(/Input:\s*([\s\S]*?)(?=Output:|$)/i);
+        if (match && match[1]) {
+          sampleInput = match[1].trim();
+        }
+      }
+      const testInputEl = document.getElementById('questTestInput');
+      if (testInputEl) testInputEl.value = sampleInput;
+
+      document.getElementById('solutionBox').classList.add('hidden');
+      document.getElementById('qmSolutionCode').textContent = q.solution;
+      document.getElementById('questFeedback').classList.add('hidden');
+      closeAiHintBox();
+      lastExecutionStderr = '';
+      lastExecutionStdout = '';
+      document.getElementById('questModal').classList.remove('hidden');
+    }
+
+    function closeQuestModal() {
+      document.getElementById('questModal').classList.add('hidden');
+      closeAiHintBox();
+      currentOpenQuestId = null;
+    }
+
+    let lastExecutionStderr = '';
+    let lastExecutionStdout = '';
+
+    function toggleHint() {
+      requestAiHint();
+    }
+
+    function closeAiHintBox() {
+      const hintBox = document.getElementById('aiHintBox');
+      if (hintBox) hintBox.classList.add('hidden');
+    }
+
+    async function requestAiHint() {
+      const codeInput = document.getElementById('questCodeInput').value.trim();
+      const hintBox = document.getElementById('aiHintBox');
+      const hintContent = document.getElementById('aiHintContent');
+      const q = languageQuests.find(item => item.id === currentOpenQuestId);
+      const hasCode = codeInput.length > 0;
+
+      // Show loading indicator
+      if (hintBox && hintContent) {
+        hintBox.classList.remove('hidden');
+        hintContent.innerHTML = `
+          <div class="flex items-center space-x-2 text-purple-300 py-1.5">
+            <i class="fa-solid fa-spinner fa-spin text-teal-400 text-sm"></i>
+            <span>${hasCode ? 'AI Mentor is analyzing your code and error output...' : 'AI Mentor is preparing a conceptual starting hint...'}</span>
+          </div>
+        `;
+        hintBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      const hintBtns = document.querySelectorAll('.ai-hint-btn');
+      hintBtns.forEach(btn => {
+        btn.disabled = true;
+        btn.dataset.origHtml = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin mr-1"></i><span>Thinking...</span>';
+      });
+
+      try {
+        let errorPayload = '';
+        if (hasCode) {
+          const expected = q ? (q.expectedOutput || '').trim() : '';
+          const isHtmlCss = q && (q.lang === 'HTML' || q.lang === 'CSS');
+          const normalizeWhitespace = (str) => (str || '').replace(/[\r\n]+/g, ' ').replace(/\s+/g, ' ').trim();
+          const isMismatch = lastExecutionStdout && expected && (
+            isHtmlCss
+              ? (normalizeWhitespace(lastExecutionStdout) !== normalizeWhitespace(expected) && normalizeWhitespace(lastExecutionStdout).replace(/>\s+</g, '><') !== normalizeWhitespace(expected).replace(/>\s+</g, '><'))
+              : (lastExecutionStdout !== expected)
+          );
+          errorPayload = lastExecutionStderr 
+            || (isMismatch ? `Program Output Mismatch:\nExpected Output: "${expected}"\nActual Program Output: "${lastExecutionStdout}"` : (lastExecutionStdout ? `Program Output:\n${lastExecutionStdout}` : 'Test cases failed or logic error.'));
+        }
+
+        const response = await fetch('/api/ai-hint', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            code: codeInput,
+            error: errorPayload,
+            stdout: hasCode ? lastExecutionStdout : '',
+            language: q ? q.lang : 'code',
+            problemTitle: q ? q.title : '',
+            problemDesc: q ? q.desc : ''
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error(`Hint API returned ${response.status}`);
+        }
+
+        const data = await response.json();
+        const rawHint = data.hint || (hasCode 
+          ? 'Carefully check your loop boundaries, return values, and edge cases.' 
+          : 'Consider identifying the problem inputs, breaking the logic into small steps, and selecting the optimal data structure.');
+
+        if (hintContent) {
+          // Format markdown bolding (**text**) and code backticks (`code`)
+          const formatted = escapeHtml(rawHint)
+            .replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-bold">$1</strong>')
+            .replace(/`([^`]+)`/g, '<code class="bg-slate-900 border border-white/10 px-1.5 py-0.5 rounded text-teal-300 font-mono text-[11px]">$1</code>')
+            .replace(/\n\n/g, '</p><p class="mt-2 text-slate-200 leading-relaxed">')
+            .replace(/\n/g, '<br>');
+
+          const footerBadge = hasCode
+            ? `<span class="flex items-center text-purple-300"><i class="fa-solid fa-lightbulb mr-1.5 text-amber-400"></i> Targeted mentor clue • No spoilers</span>`
+            : `<span class="flex items-center text-teal-300"><i class="fa-solid fa-compass mr-1.5 text-teal-400"></i> Conceptual starting direction • No spoilers</span>`;
+
+          hintContent.innerHTML = `
+            <div class="space-y-2">
+              <div class="text-slate-200 leading-relaxed text-xs">
+                <p>${formatted}</p>
+              </div>
+              <div class="text-[10px] text-slate-400 font-mono pt-2 border-t border-purple-500/20 flex items-center justify-between">
+                ${footerBadge}
+                <span class="text-teal-400 font-semibold flex items-center"><i class="fa-solid fa-wand-magic-sparkles mr-1 text-teal-300"></i> AI Mentor</span>
+              </div>
+            </div>
+          `;
+          hintBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      } catch (err) {
+        console.error('Failed to get AI hint:', err);
+        if (hintContent) {
+          hintContent.innerHTML = `<span class="text-rose-400"><i class="fa-solid fa-triangle-exclamation mr-1.5"></i> Could not generate hint. Please check network and try again.</span>`;
+        }
+      } finally {
+        hintBtns.forEach(btn => {
+          btn.disabled = false;
+          if (btn.dataset.origHtml) btn.innerHTML = btn.dataset.origHtml;
+        });
+      }
+    }
+
+    function revealSolution() {
+      document.getElementById('solutionBox').classList.remove('hidden');
+    }
+
+    async function runQuestTestCases() {
+      const btn = document.getElementById('runTestCasesBtn');
+      const fb = document.getElementById('questFeedback');
+      const codeInput = document.getElementById('questCodeInput').value.trim();
+      const testInputEl = document.getElementById('questTestInput');
+      const testInput = testInputEl ? testInputEl.value : '';
+      const q = languageQuests.find(item => item.id === currentOpenQuestId);
+      if (!q) return;
+
+      if (!codeInput) {
+        fb.className = "p-3 rounded-xl text-xs font-medium bg-rose-950/40 text-rose-400 border border-rose-500/30";
+        fb.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-1.5"></i> Please write some code before running test cases.';
+        fb.classList.remove('hidden');
+        return;
+      }
+
+      // Indicate loading state
+      const originalBtnHtml = btn ? btn.innerHTML : '';
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin mr-1.5"></i><span>Running in Sandbox...</span>';
+      }
+
+      fb.className = "p-3 rounded-xl text-xs font-medium bg-slate-900 border border-teal-500/30 text-teal-300";
+      fb.innerHTML = '<i class="fa-solid fa-terminal mr-1.5"></i> Executing code in local sandbox...';
+      fb.classList.remove('hidden');
+
+      try {
+        const response = await fetch('/api/run-code', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            language: q.lang,
+            version: '*',
+            code: codeInput,
+            testInput: testInput,
+            expectedOutput: q.expectedOutput
+          })
+        });
+
+        const result = await response.json();
+        const stdout = (result.stdout || '').trim();
+        const stderr = (result.stderr || '').trim();
+        const exitCode = result.code;
+        const expected = (q.expectedOutput || '').trim();
+
+        lastExecutionStderr = stderr;
+        lastExecutionStdout = stdout;
+
+        // Normalized comparison for HTML/CSS (collapses whitespace, strips newlines, trims) vs strict comparison
+        const isHtmlCss = q && (q.lang === 'HTML' || q.lang === 'CSS');
+        const normalizeWhitespace = (str) => (str || '').replace(/[\r\n]+/g, ' ').replace(/\s+/g, ' ').trim();
+        let isOutputMatch = true;
+        if (expected) {
+          if (isHtmlCss) {
+            const normStdout = normalizeWhitespace(stdout);
+            const normExpected = normalizeWhitespace(expected);
+            isOutputMatch = (normStdout === normExpected) || (normStdout.replace(/>\s+</g, '><') === normExpected.replace(/>\s+</g, '><'));
+          } else {
+            isOutputMatch = (stdout === expected);
+          }
+        }
+        const isSuccess = exitCode === 0 && !stderr && isOutputMatch;
+
+        if (isSuccess) {
+          fb.className = "p-4 rounded-xl text-xs bg-emerald-950/40 text-emerald-300 border border-emerald-500/30 space-y-2.5";
+          let html = `
+            <div class="flex items-center justify-between font-bold">
+              <span class="text-emerald-400 flex items-center">
+                <i class="fa-solid fa-circle-check mr-1.5 text-sm"></i>
+                <span>Accepted! (Exit Code ${exitCode})</span>
+              </span>
+              <span class="text-amber-400 font-mono font-bold">+${q.xp} XP Earned</span>
+            </div>
+          `;
+          if (stdout) {
+            html += `
+              <div class="pt-2 border-t border-emerald-500/20">
+                <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Output (stdout matches expected):</span>
+                <pre class="mt-1 font-mono text-[11px] bg-slate-950/90 p-2.5 rounded-lg border border-emerald-900/40 text-emerald-200 overflow-x-auto whitespace-pre-wrap">${escapeHtml(stdout)}</pre>
+              </div>
+            `;
+          }
+          fb.innerHTML = html;
+
+          q.completed = true;
+          currentXP += q.xp;
+          document.getElementById('xpDisplay').textContent = currentXP;
+
+          const completedIds = JSON.parse(localStorage.getItem('aroha_completed_quests') || '[]');
+          if (!completedIds.includes(q.id)) {
+            completedIds.push(q.id);
+            localStorage.setItem('aroha_completed_quests', JSON.stringify(completedIds));
+          }
+
+          updateArenaAndProficiency(q.lang, q.level, true);
+
+          // Persist progress to backend ONLY on verified success
+          fetch('/api/progress', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({
+              xp: currentXP,
+              completed_quests: completedIds,
+              language_scores: currentLanguageScores
+            })
+          }).catch(err => console.warn('API progress save failed:', err));
+
+          renderQuests();
+        } else {
+          // Output Mismatch or Execution Error
+          const isMismatch = (exitCode === 0 && !stderr && !isOutputMatch);
+          fb.className = "p-4 rounded-xl text-xs bg-rose-950/40 text-rose-300 border border-rose-500/30 space-y-3";
+          
+          let titleText = isMismatch 
+            ? 'Output Mismatch (Wrong Answer)'
+            : `Execution Failed (Exit Code ${exitCode !== undefined ? exitCode : 1})`;
+
+          let html = `
+            <div class="flex items-center justify-between font-bold flex-wrap gap-2">
+              <span class="text-rose-400 flex items-center">
+                <i class="fa-solid fa-circle-xmark mr-1.5 text-sm"></i>
+                <span>${titleText}</span>
+              </span>
+              <div class="flex items-center space-x-2">
+                <button id="terminalAiHintBtn" onclick="requestAiHint()" class="ai-hint-btn px-3 py-1.5 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center space-x-1.5 shadow-[0_0_12px_rgba(168,85,247,0.4)] transition active:scale-95">
+                  <i class="fa-solid fa-wand-magic-sparkles text-teal-300"></i>
+                  <span>AI Hint</span>
+                </button>
+                <button onclick="revealSolution()" class="text-amber-400 hover:underline text-xs flex items-center space-x-1">
+                  <i class="fa-solid fa-eye"></i><span>View Solution</span>
+                </button>
+              </div>
+            </div>
+          `;
+
+          if (isMismatch) {
+            html += `
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 pt-2 border-t border-rose-500/20">
+                <div>
+                  <span class="text-[10px] uppercase font-bold text-rose-400 tracking-wider flex items-center">
+                    <i class="fa-solid fa-xmark mr-1"></i> Actual Output (stdout):
+                  </span>
+                  <pre class="mt-1 font-mono text-[11px] bg-slate-950/90 p-2.5 rounded-lg border border-rose-900/40 text-rose-200 overflow-x-auto whitespace-pre-wrap">${escapeHtml(stdout || '(empty output)')}</pre>
+                </div>
+                <div>
+                  <span class="text-[10px] uppercase font-bold text-emerald-400 tracking-wider flex items-center">
+                    <i class="fa-solid fa-check mr-1"></i> Expected Output:
+                  </span>
+                  <pre class="mt-1 font-mono text-[11px] bg-slate-950/90 p-2.5 rounded-lg border border-emerald-900/40 text-emerald-200 overflow-x-auto whitespace-pre-wrap">${escapeHtml(expected)}</pre>
+                </div>
+              </div>
+            `;
+          } else {
+            if (stderr) {
+              html += `
+                <div class="pt-2 border-t border-rose-500/20">
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="text-[10px] uppercase font-bold text-rose-400 tracking-wider">Error Details (stderr):</span>
+                    <button onclick="requestAiHint()" class="ai-hint-btn text-[11px] text-purple-300 hover:text-purple-200 flex items-center space-x-1 font-semibold">
+                      <i class="fa-solid fa-wand-magic-sparkles text-teal-300 text-[10px]"></i><span>Debug with AI</span>
+                    </button>
+                  </div>
+                  <pre class="mt-1 font-mono text-[11px] bg-slate-950/90 p-2.5 rounded-lg border border-rose-900/40 text-rose-300 overflow-x-auto whitespace-pre-wrap">${escapeHtml(stderr)}</pre>
+                </div>
+              `;
+            }
+            if (stdout) {
+              html += `
+                <div class="pt-2 border-t border-rose-500/20">
+                  <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Program Output (stdout):</span>
+                  <pre class="mt-1 font-mono text-[11px] bg-slate-950/90 p-2.5 rounded-lg border border-white/10 text-slate-300 overflow-x-auto whitespace-pre-wrap">${escapeHtml(stdout)}</pre>
+                </div>
+              `;
+            }
+          }
+
+          fb.innerHTML = html;
+          updateArenaAndProficiency(q.lang, q.level, false);
+          fetch('/api/progress', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({
+              language_scores: currentLanguageScores
+            })
+          }).catch(err => console.warn('API progress save failed:', err));
+        }
+      } catch (err) {
+        fb.className = "p-3 rounded-xl text-xs font-medium bg-rose-950/40 text-rose-400 border border-rose-500/30";
+        fb.innerHTML = `<i class="fa-solid fa-triangle-exclamation mr-1.5"></i> Network error running code: ${escapeHtml(err.message)}`;
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = originalBtnHtml;
+        }
+      }
+    }
+
+    function updateArenaAndProficiency(lang, level, passed) {
+      const arenaRules = {
+        'Easy':     { gain: 2, penalty: 4 },
+        'Medium':   { gain: 4, penalty: 2 },
+        'Advanced': { gain: 6, penalty: 1 }
+      };
+
+      const rule = arenaRules[level] || arenaRules['Medium'];
+      let currentArenaBonus = parseInt(localStorage.getItem('aroha_arena_bonus') || '0', 10);
+
+      if (passed) {
+        currentArenaBonus = Math.min(30, currentArenaBonus + rule.gain);
+      } else {
+        currentArenaBonus = Math.max(-15, currentArenaBonus - rule.penalty);
+      }
+      localStorage.setItem('aroha_arena_bonus', currentArenaBonus);
+
+      const delta = passed ? rule.gain : -rule.penalty;
+      const currentVal = currentLanguageScores[lang] || 25;
+      currentLanguageScores[lang] = Math.max(5, Math.min(100, currentVal + delta));
+      return currentLanguageScores;
+    }
+  </script>
+</body>
+</html>

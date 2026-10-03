@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AROHA - AI-Powered Learning Gap & Skill Roadmap System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body { 
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #050711; 
+      color: #f1f5f9; 
+    }
+    .logo-glow { 
+      filter: drop-shadow(0 0 25px rgba(124, 58, 237, 0.6)) drop-shadow(0 0 40px rgba(45, 212, 191, 0.45)); 
+    }
+    .aurora-glass-card {
+      background: linear-gradient(180deg, rgba(20, 26, 48, 0.72) 0%, rgba(13, 17, 34, 0.85) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.25s ease;
+    }
+    .aurora-glass-card:hover {
+      border-color: rgba(168, 85, 247, 0.35);
+      box-shadow: 0 25px 60px -10px rgba(99, 102, 241, 0.25);
+    }
+    .btn-aurora-purple {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #7c3aed 100%);
+      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-aurora-purple:hover {
+      box-shadow: 0 6px 30px rgba(139, 92, 246, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px) scale(1.01);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-6 font-sans relative overflow-x-hidden">
+
+  <!-- UNIFIED HIGH-SATURATION AURORA BACKGROUND NODES -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="absolute top-[18%] -left-32 w-[34rem] h-[48rem] bg-gradient-to-r from-[#6d28d9] via-[#7c3aed] to-[#3b82f6] opacity-75 rounded-[45%] blur-[100px] transform rotate-12"></div>
+    <div class="absolute -top-16 right-[8%] w-[38rem] h-[22rem] bg-gradient-to-r from-[#a855f7] via-[#818cf8] to-[#06b6d4] opacity-80 rounded-[50%] blur-[95px] transform -rotate-6"></div>
+    <div class="absolute top-[22%] -right-24 w-[28rem] h-[34rem] bg-gradient-to-br from-[#e0f2fe] via-[#38bdf8] to-[#2dd4bf] opacity-65 rounded-[50%] blur-[90px]"></div>
+    <div class="absolute bottom-[4%] -right-16 w-[26rem] h-[26rem] bg-[#06b6d4]/50 rounded-full blur-[110px]"></div>
+    <div class="absolute -bottom-6 left-[30%] w-[26rem] h-12 bg-gradient-to-r from-[#22d3ee] via-[#a855f7] to-[#ec4899] rounded-full blur-[36px] opacity-90"></div>
+  </div>
+
+  <header class="w-full max-w-5xl flex justify-between items-center py-4 relative z-10">
+    <div class="flex items-center space-x-2">
+      <span class="text-xs font-bold text-teal-300 uppercase tracking-widest bg-teal-500/10 border border-teal-500/30 px-3.5 py-1 rounded-full backdrop-blur-md shadow-sm">
+        AI-Powered Learning Gap & Skill Roadmap System
+      </span>
+    </div>
+  </header>
+
+  <main class="flex-1 flex flex-col items-center justify-center text-center max-w-2xl px-4 space-y-8 my-auto relative z-10">
+    
+    <div class="w-28 h-28 flex items-center justify-center logo-glow mb-2 animate-pulse">
+      <svg viewBox="0 0 100 100" class="w-full h-full">
+        <defs>
+          <linearGradient id="logoGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#2dd4bf" />
+            <stop offset="50%" stop-color="#818cf8" />
+            <stop offset="100%" stop-color="#c084fc" />
+          </linearGradient>
+        </defs>
+        <path d="M 50 10 L 15 85 L 32 85 L 50 48 L 68 85 L 85 85 Z" fill="none" stroke="url(#logoGrad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M 50 10 L 35 50 L 50 32 L 65 50 Z" fill="none" stroke="url(#logoGrad)" stroke-width="2.5" />
+        <path d="M 35 50 L 65 50 M 25 68 L 75 68" stroke="url(#logoGrad)" stroke-width="2" />
+        <path d="M 30 75 L 70 35 M 70 35 H 52 M 70 35 V 53" fill="none" stroke="url(#logoGrad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="50" cy="10" r="3.5" fill="#2dd4bf" />
+        <circle cx="15" cy="85" r="3.5" fill="#2dd4bf" />
+        <circle cx="85" cy="85" r="3.5" fill="#c084fc" />
+        <circle cx="70" cy="35" r="3.5" fill="#c084fc" />
+      </svg>
+    </div>
+
+    <div class="space-y-3">
+      <h1 class="text-6xl font-black tracking-wider bg-gradient-to-r from-[#22d3ee] via-[#818cf8] to-[#c084fc] bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(45,212,191,0.5)]">
+        AROHA
+      </h1>
+      <p class="text-lg font-medium text-slate-300 tracking-wide">
+        AI-Powered Skill Gap Diagnosis & Adaptive Roadmaps
+      </p>
+    </div>
+
+    <div class="aurora-glass-card p-6 rounded-3xl text-xs text-slate-300 leading-relaxed max-w-md">
+      <span class="text-teal-400 font-bold block mb-1.5 uppercase tracking-wider text-[11px] flex items-center justify-center space-x-1.5">
+        <i class="fa-solid fa-compass"></i>
+        <span>System Mission</span>
+      </span>
+      Pinpoint exact conceptual deficiencies against real industry benchmarks. Our diagnostic probes evaluate competencies, map skill gaps, and generate tailored, milestone-based roadmaps.
+    </div>
+
+    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="signup.html" class="inline-flex items-center justify-center space-x-2.5 px-8 py-3.5 btn-aurora-purple text-white font-bold text-sm rounded-2xl group w-full sm:w-auto">
+        <span>Get Started</span>
+        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+      </a>
+      <a href="login.html" class="inline-flex items-center justify-center px-8 py-3.5 bg-white/5 hover:bg-white/10 border border-white/20 hover:border-white/40 text-white font-bold text-sm rounded-2xl backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 w-full sm:w-auto">
+        <span>Log In</span>
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="w-full max-w-5xl text-center py-4 text-xs text-slate-500 border-t border-white/5 relative z-10">
+    &copy; 2026 AROHA Platform. All rights reserved.
+  </footer>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const response = await fetch('/api/me', { credentials: 'include' });
+        if (response.ok) {
+          window.location.href = 'dashboard.html';
+        }
+      } catch (err) {
+        // Not logged in or network error, stay on landing page
+      }
+    });
+  </script>
+</body>
+</html>

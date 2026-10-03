@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AROHA - Candidate Profile & Baseline Calibration</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body { 
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #050711; 
+      color: #f1f5f9; 
+    }
+    .aurora-glass-card {
+      background: linear-gradient(180deg, rgba(20, 26, 48, 0.75) 0%, rgba(13, 17, 34, 0.88) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
+      box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+    .btn-aurora-purple {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #7c3aed 100%);
+      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-aurora-purple:hover {
+      box-shadow: 0 6px 30px rgba(139, 92, 246, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+    }
+    .skill-pill, .pace-pill {
+      transition: all 0.2s ease;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 font-sans relative overflow-x-hidden">
+
+  <!-- UNIFIED HIGH-SATURATION AURORA BACKGROUND NODES -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="absolute top-[18%] -left-32 w-[34rem] h-[48rem] bg-gradient-to-r from-[#6d28d9] via-[#7c3aed] to-[#3b82f6] opacity-75 rounded-[45%] blur-[100px] transform rotate-12"></div>
+    <div class="absolute -top-16 right-[8%] w-[38rem] h-[22rem] bg-gradient-to-r from-[#a855f7] via-[#818cf8] to-[#06b6d4] opacity-80 rounded-[50%] blur-[95px] transform -rotate-6"></div>
+    <div class="absolute top-[22%] -right-24 w-[28rem] h-[34rem] bg-gradient-to-br from-[#e0f2fe] via-[#38bdf8] to-[#2dd4bf] opacity-65 rounded-[50%] blur-[90px]"></div>
+    <div class="absolute bottom-[4%] -right-16 w-[26rem] h-[26rem] bg-[#06b6d4]/50 rounded-full blur-[110px]"></div>
+    <div class="absolute -bottom-6 left-[30%] w-[26rem] h-12 bg-gradient-to-r from-[#22d3ee] via-[#a855f7] to-[#ec4899] rounded-full blur-[36px] opacity-90"></div>
+  </div>
+
+  <div class="max-w-xl w-full aurora-glass-card rounded-3xl p-8 space-y-6 my-8 relative z-10">
+    
+    <!-- Header -->
+    <div class="text-center space-y-2">
+      <span class="text-[10px] font-bold tracking-widest text-teal-300 uppercase bg-teal-500/10 border border-teal-500/30 px-3 py-1 rounded-full backdrop-blur-md">
+        Baseline Calibration
+      </span>
+      <h2 class="text-3xl font-black bg-gradient-to-r from-[#22d3ee] via-[#818cf8] to-[#c084fc] bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(45,212,191,0.4)]">
+        Student Onboarding
+      </h2>
+      <p class="text-xs text-slate-300">Declare your existing competencies and learning pace to initialize roadmap generation.</p>
+    </div>
+
+    <!-- Full Name Input -->
+    <div class="space-y-2">
+      <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider">Full Name</label>
+      <input type="text" id="onboardingName" placeholder="Enter your full name" class="w-full bg-slate-950/80 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-cyan-400 font-medium transition shadow-inner">
+    </div>
+
+    <!-- Target Career Goal Selector -->
+    <div class="space-y-2">
+      <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider">Target Career Goal</label>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2" id="careerSelector">
+        <button type="button" data-career="Frontend Developer" onclick="selectCareer(this, 'Frontend Developer')" class="career-pill p-3 rounded-xl border border-indigo-500 bg-indigo-600/30 text-teal-200 text-xs font-semibold text-center shadow-[0_0_15px_rgba(99,102,241,0.4)] transition">
+          <i class="fa-solid fa-code text-cyan-400 mb-1 text-sm block"></i>
+          <span class="block text-white font-bold">Frontend Developer</span>
+          <span class="text-[10px] text-slate-300">Web & UI Engineering</span>
+        </button>
+        <button type="button" data-career="Embedded Systems Engineer" onclick="selectCareer(this, 'Embedded Systems Engineer')" class="career-pill p-3 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold text-center hover:border-cyan-400/50 transition">
+          <i class="fa-solid fa-microchip text-indigo-400 mb-1 text-sm block"></i>
+          <span class="block text-white font-bold">Embedded Engineer</span>
+          <span class="text-[10px] text-slate-400">Firmware & Hardware</span>
+        </button>
+        <button type="button" data-career="Data Analyst" onclick="selectCareer(this, 'Data Analyst')" class="career-pill p-3 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold text-center hover:border-cyan-400/50 transition">
+          <i class="fa-solid fa-chart-line text-emerald-400 mb-1 text-sm block"></i>
+          <span class="block text-white font-bold">Data Analyst</span>
+          <span class="text-[10px] text-slate-400">BI, Python & SQL</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Target Learning Timeline & Pace Selector -->
+    <div class="space-y-2">
+      <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider">Target Roadmap Pace</label>
+      <div class="grid grid-cols-3 gap-2" id="paceSelector">
+        <button type="button" onclick="selectPace(this, '4 Weeks')" class="pace-pill p-2.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold text-center hover:border-cyan-400/50 transition">
+          <span class="block text-white font-bold">Fast-Track</span>
+          <span class="text-[10px] text-slate-400">4 Weeks</span>
+        </button>
+        <button type="button" onclick="selectPace(this, '12 Weeks')" class="pace-pill p-2.5 rounded-xl border border-indigo-500 bg-indigo-600/30 text-teal-200 text-xs font-semibold text-center shadow-[0_0_15px_rgba(99,102,241,0.4)] transition">
+          <span class="block text-white font-bold">Standard</span>
+          <span class="text-[10px] text-slate-300">12 Weeks</span>
+        </button>
+        <button type="button" onclick="selectPace(this, '24 Weeks')" class="pace-pill p-2.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold text-center hover:border-cyan-400/50 transition">
+          <span class="block text-white font-bold">Deep-Dive</span>
+          <span class="text-[10px] text-slate-400">24 Weeks</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- WEB DEVELOPMENT SKILLS -->
+    <div class="space-y-2">
+      <span class="text-[10px] font-bold text-teal-300 uppercase tracking-wider block">Web Development Track</span>
+      <div class="flex flex-wrap gap-2" id="group-web">
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">HTML</button>
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">CSS</button>
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">JavaScript</button>
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">React</button>
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">REST APIs</button>
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">Git</button>
+      </div>
+    </div>
+
+    <!-- EMBEDDED SYSTEMS SKILLS -->
+    <div class="space-y-2">
+      <span class="text-[10px] font-bold text-teal-300 uppercase tracking-wider block">Embedded Systems Track</span>
+      <div class="flex flex-wrap gap-2" id="group-embedded">
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">C</button>
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">Pointers</button>
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">Embedded C</button>
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">Microcontrollers</button>
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">UART</button>
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">SPI</button>
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">I2C</button>
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">RTOS</button>
+      </div>
+    </div>
+
+    <!-- DATA SCIENCE SKILLS -->
+    <div class="space-y-2">
+      <span class="text-[10px] font-bold text-teal-300 uppercase tracking-wider block">Data Science & Analytics</span>
+      <div class="flex flex-wrap gap-2" id="group-data">
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">Python</button>
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">SQL</button>
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">Excel</button>
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">Statistics</button>
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">Pandas</button>
+        <button type="button" onclick="toggleSkill(this)" class="skill-pill px-3.5 py-1.5 rounded-xl border border-white/10 bg-slate-900/80 text-slate-300 text-xs font-semibold hover:border-cyan-400/50 transition">Data Visualization</button>
+      </div>
+    </div>
+
+    <!-- Continue Button -->
+    <div class="pt-4">
+      <button onclick="completeOnboarding()" class="w-full py-4 btn-aurora-purple text-white font-bold text-xs rounded-xl shadow-lg flex items-center justify-center space-x-2 group">
+        <span>Proceed to Benchmark Calibration</span>
+        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    let selectedCareerVal = 'Frontend Developer';
+    let selectedPaceVal = '12 Weeks';
+
+    function selectCareer(btn, career) {
+      selectedCareerVal = career;
+      highlightCareer(career);
+    }
+
+    function highlightCareer(career) {
+      document.querySelectorAll('.career-pill').forEach(el => {
+        const isMatch = el.dataset.career === career;
+        const sub = el.querySelector('span:last-child');
+        if (isMatch) {
+          el.classList.remove('bg-slate-900/80', 'border-white/10', 'text-slate-300');
+          el.classList.add('bg-indigo-600/30', 'border-indigo-500', 'text-teal-200', 'shadow-[0_0_15px_rgba(99,102,241,0.4)]');
+          if (sub) { sub.classList.remove('text-slate-400'); sub.classList.add('text-slate-300'); }
+        } else {
+          el.classList.remove('bg-indigo-600/30', 'border-indigo-500', 'text-teal-200', 'shadow-[0_0_15px_rgba(99,102,241,0.4)]');
+          el.classList.add('bg-slate-900/80', 'border-white/10', 'text-slate-300');
+          if (sub) { sub.classList.remove('text-slate-300'); sub.classList.add('text-slate-400'); }
+        }
+      });
+    }
+
+    function selectPace(btn, pace) {
+      document.querySelectorAll('.pace-pill').forEach(el => {
+        el.classList.remove('bg-indigo-600/30', 'border-indigo-500', 'text-teal-200', 'shadow-[0_0_15px_rgba(99,102,241,0.4)]');
+        el.classList.add('bg-slate-900/80', 'border-white/10', 'text-slate-300');
+      });
+      btn.classList.remove('bg-slate-900/80', 'border-white/10', 'text-slate-300');
+      btn.classList.add('bg-indigo-600/30', 'border-indigo-500', 'text-teal-200', 'shadow-[0_0_15px_rgba(99,102,241,0.4)]');
+      selectedPaceVal = pace;
+    }
+
+    function toggleSkill(btn) {
+      const isSelected = btn.classList.contains('border-indigo-500');
+      if (isSelected) {
+        btn.classList.remove('bg-indigo-600/30', 'border-indigo-500', 'text-teal-200', 'shadow-[0_0_15px_rgba(99,102,241,0.4)]');
+        btn.classList.add('bg-slate-900/80', 'border-white/10', 'text-slate-300');
+      } else {
+        btn.classList.remove('bg-slate-900/80', 'border-white/10', 'text-slate-300');
+        btn.classList.add('bg-indigo-600/30', 'border-indigo-500', 'text-teal-200', 'shadow-[0_0_15px_rgba(99,102,241,0.4)]');
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      const localName = localStorage.getItem('aroha_student_name');
+      const input = document.getElementById('onboardingName');
+      if (localName && localName.trim() !== '' && localName !== 'Student') {
+        input.value = localName;
+      }
+
+      // Restore saved career from localStorage if previously set
+      const savedCareer = localStorage.getItem('aroha_target_career');
+      if (savedCareer) {
+        selectedCareerVal = savedCareer;
+        highlightCareer(savedCareer);
+      }
+
+      try {
+        const res = await fetch('/api/me', { credentials: 'include' });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.user) {
+            if (data.user.name && data.user.name !== 'Student') {
+              input.value = data.user.name;
+              localStorage.setItem('aroha_student_name', data.user.name);
+            }
+            if (data.user.target_career && data.user.target_career.trim() !== '') {
+              selectedCareerVal = data.user.target_career.trim();
+              highlightCareer(selectedCareerVal);
+              localStorage.setItem('aroha_target_career', selectedCareerVal);
+            }
+            if (data.user.selected_skills && Array.isArray(data.user.selected_skills)) {
+              document.querySelectorAll('.skill-pill').forEach(btn => {
+                if (data.user.selected_skills.includes(btn.textContent.trim())) {
+                  btn.classList.remove('bg-slate-900/80', 'border-white/10', 'text-slate-300');
+                  btn.classList.add('bg-indigo-600/30', 'border-indigo-500', 'text-teal-200', 'shadow-[0_0_15px_rgba(99,102,241,0.4)]');
+                }
+              });
+            }
+          }
+        }
+      } catch (err) {
+        // network / offline fallback
+      }
+    });
+
+    async function completeOnboarding() {
+      const continueBtn = document.querySelector('button[onclick="completeOnboarding()"]');
+      if (continueBtn) {
+        continueBtn.disabled = true;
+        continueBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin mr-2"></i><span>Saving Calibration...</span>';
+      }
+
+      const nameInputVal = document.getElementById('onboardingName').value.trim();
+      const existingName = localStorage.getItem('aroha_student_name');
+      const name = nameInputVal || (existingName && existingName !== 'Student' ? existingName : 'Student');
+      localStorage.setItem('aroha_student_name', name);
+
+      // Correctly capture the selected target_career
+      const targetCareer = selectedCareerVal || localStorage.getItem('aroha_target_career') || 'Frontend Developer';
+      localStorage.setItem('aroha_target_career', targetCareer);
+
+      const selectedSkills = [];
+      document.querySelectorAll('.skill-pill').forEach(btn => {
+        if (btn.classList.contains('border-indigo-500')) {
+          selectedSkills.push(btn.textContent.trim());
+        }
+      });
+      localStorage.setItem('aroha_student_skills', JSON.stringify(selectedSkills));
+      localStorage.setItem('aroha_target_pace', selectedPaceVal);
+
+      const careerRequiredSkillsMap = {
+        'Frontend Developer': ['HTML', 'CSS', 'JavaScript', 'React', 'REST APIs', 'Git'],
+        'Embedded Systems Engineer': ['C', 'Pointers', 'Embedded C', 'Microcontrollers', 'UART', 'SPI', 'I2C', 'RTOS'],
+        'Data Analyst': ['Python', 'SQL', 'Excel', 'Statistics', 'Pandas', 'Data Visualization']
+      };
+      const requiredSkills = careerRequiredSkillsMap[targetCareer] || careerRequiredSkillsMap['Frontend Developer'];
+      localStorage.setItem('aroha_required_skills', JSON.stringify(requiredSkills));
+
+      // Clean diagnostic and gap vectors
+      localStorage.setItem('aroha_diagnostic_bonus', '0');
+      localStorage.setItem('aroha_arena_bonus', '0');
+      localStorage.setItem('aroha_detected_gaps', JSON.stringify([]));
+
+      try {
+        const response = await fetch('/api/profile', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({
+            name: name,
+            selected_skills: selectedSkills,
+            target_career: targetCareer,
+            required_skills: requiredSkills
+          })
+        });
+
+        if (!response.ok) {
+          console.warn('PUT /api/profile returned status:', response.status);
+        }
+      } catch (err) {
+        console.warn('API save failed, using localStorage fallback', err);
+      }
+
+      window.location.replace('dashboard.html');
+    }
+  </script>
+</body>
+</html>

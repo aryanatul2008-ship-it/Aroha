@@ -1,0 +1,713 @@
+{
+  "diagnostic": {
+    "HTML": {
+      "Basic": [
+        {
+          "q": "Which HTML5 element represents self-contained content that could be distributed independently?",
+          "options": [
+            "<section>",
+            "<article>",
+            "<aside>",
+            "<div>"
+          ],
+          "correct": 1
+        }
+      ],
+      "Medium": [
+        {
+          "q": "What is the primary role of the 'aria-live' attribute?",
+          "options": [
+            "Controls video autoplay",
+            "Informs screen readers of dynamic content updates",
+            "Forces lazy loading",
+            "Validates forms asynchronously"
+          ],
+          "correct": 1
+        }
+      ],
+      "Advanced": [
+        {
+          "q": "How does the Shadow DOM isolate styles from the main document?",
+          "options": [
+            "By compiling SCSS in browser",
+            "Via encapsulation boundary and scoped DOM trees",
+            "Through iframe sandboxing",
+            "By applying inline style tags"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    "CSS": {
+      "Basic": [
+        {
+          "q": "Which property specifies the stack order of a positioned element?",
+          "options": [
+            "stack",
+            "layer",
+            "z-index",
+            "position-depth"
+          ],
+          "correct": 2
+        }
+      ],
+      "Medium": [
+        {
+          "q": "In flexbox, what does 'flex: 1 1 auto;' evaluate to?",
+          "options": [
+            "grow:1, shrink:1, basis:auto",
+            "grow:1, shrink:0, basis:100%",
+            "grow:auto, shrink:1, basis:0",
+            "grow:0, shrink:0, basis:auto"
+          ],
+          "correct": 0
+        }
+      ],
+      "Advanced": [
+        {
+          "q": "What is the key advantage of CSS container queries over traditional viewport media queries?",
+          "options": [
+            "Zero CSS syntax parsing overhead",
+            "Styling elements based on parent container dimensions rather than viewport",
+            "Automatic GPU acceleration",
+            "Elimination of class naming"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    "JavaScript": {
+      "Basic": [
+        {
+          "q": "Which operator performs strict equality comparison without type coercion?",
+          "options": [
+            "==",
+            "!=",
+            "===",
+            "="
+          ],
+          "correct": 2
+        }
+      ],
+      "Medium": [
+        {
+          "q": "What is a closure in JavaScript?",
+          "options": [
+            "A function bundled together with references to its lexical scope",
+            "A function that automatically terminates memory loops",
+            "A method to close browser tabs",
+            "A native event listener remover"
+          ],
+          "correct": 0
+        }
+      ],
+      "Advanced": [
+        {
+          "q": "What is the execution order difference between Promise.then microtasks and setTimeout callbacks?",
+          "options": [
+            "setTimeout executes before microtasks",
+            "Microtasks execute immediately after the current script and before macrotasks",
+            "They share identical FIFO execution",
+            "Microtasks only run on page reload"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    "React": {
+      "Basic": [
+        {
+          "q": "What hook is used to preserve mutable values between renders without causing re-renders?",
+          "options": [
+            "useState",
+            "useMemo",
+            "useRef",
+            "useCallback"
+          ],
+          "correct": 2
+        }
+      ],
+      "Medium": [
+        {
+          "q": "Why should keys in React lists never be set to random Math.random() values?",
+          "options": [
+            "Keys must be numbers",
+            "Causes full unmounting and state loss on every reconciliation render",
+            "Triggers infinite server fetch loops",
+            "Breaks browser localStorage"
+          ],
+          "correct": 1
+        }
+      ],
+      "Advanced": [
+        {
+          "q": "What happens when using useEffect without a dependency array?",
+          "options": [
+            "Runs only on mount",
+            "Runs on initial mount and after every single render",
+            "Never runs",
+            "Runs only when state drops"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    "C": {
+      "Basic": [
+        {
+          "q": "What format specifier is used to print a memory address in standard C?",
+          "options": [
+            "%d",
+            "%s",
+            "%p",
+            "%x"
+          ],
+          "correct": 2
+        }
+      ],
+      "Medium": [
+        {
+          "q": "What does the 'sizeof' operator evaluate to in C?",
+          "options": [
+            "The bit depth of an expression",
+            "The memory size in bytes of the operand",
+            "The memory register speed",
+            "The pointer depth"
+          ],
+          "correct": 1
+        }
+      ],
+      "Advanced": [
+        {
+          "q": "What is undefined behavior if a memory block allocated with malloc is freed twice?",
+          "options": [
+            "Silent recovery",
+            "Double-free vulnerability and heap corruption",
+            "Automatic re-allocation",
+            "Safe stack rewind"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    "C++": {
+      "Basic": [
+        {
+          "q": "What is the correct way to output text in C++?",
+          "options": [
+            "print('Hello')",
+            "System.out.println('Hello')",
+            "cout << \"Hello\"",
+            "echo 'Hello'"
+          ],
+          "correct": 2
+        }
+      ],
+      "Medium": [
+        {
+          "q": "Difference between std::unique_ptr and std::shared_ptr in C++?",
+          "options": [
+            "unique_ptr allows multiple owners",
+            "unique_ptr enforces exclusive ownership via move semantics",
+            "shared_ptr has no refcount overhead",
+            "They are identical"
+          ],
+          "correct": 1
+        }
+      ],
+      "Advanced": [
+        {
+          "q": "What is SFINAE in C++ template metaprogramming?",
+          "options": [
+            "Substitution Failure Is Not An Error",
+            "Runtime exception handler",
+            "Heap memory allocator",
+            "Static variable macro"
+          ],
+          "correct": 0
+        }
+      ]
+    },
+    "Java": {
+      "Basic": [
+        {
+          "q": "Which data type is used to create a variable that should store text in Java?",
+          "options": [
+            "string",
+            "String",
+            "Txt",
+            "Chars"
+          ],
+          "correct": 1
+        }
+      ],
+      "Medium": [
+        {
+          "q": "Which method can be used to find the length of a string in Java?",
+          "options": [
+            "length()",
+            "getSize()",
+            "len()",
+            "index()"
+          ],
+          "correct": 0
+        }
+      ],
+      "Advanced": [
+        {
+          "q": "Which memory area in Java JVM stores class metadata?",
+          "options": [
+            "Heap space",
+            "Java Thread Stack",
+            "Metaspace",
+            "Program Counter"
+          ],
+          "correct": 2
+        }
+      ]
+    },
+    "Python": {
+      "Basic": [
+        {
+          "q": "Which data type in Python is immutable?",
+          "options": [
+            "list",
+            "dict",
+            "tuple",
+            "set"
+          ],
+          "correct": 2
+        }
+      ],
+      "Medium": [
+        {
+          "q": "What is the time complexity of looking up a key in a Python dict on average?",
+          "options": [
+            "O(n)",
+            "O(log n)",
+            "O(1)",
+            "O(n^2)"
+          ],
+          "correct": 2
+        }
+      ],
+      "Advanced": [
+        {
+          "q": "What does a Python generator return when called?",
+          "options": [
+            "A static memory list",
+            "An iterator object yielding items lazily via the yield statement",
+            "A binary tuple",
+            "A frozen set"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    "SQL": {
+      "Basic": [
+        {
+          "q": "Which SQL clause is used to filter records returned by a query?",
+          "options": [
+            "WHERE",
+            "GROUP",
+            "ORDER",
+            "LIMIT"
+          ],
+          "correct": 0
+        }
+      ],
+      "Medium": [
+        {
+          "q": "What is the difference between WHERE and HAVING in SQL?",
+          "options": [
+            "They are identical",
+            "WHERE filters rows before aggregation, while HAVING filters grouped results",
+            "HAVING only works on text",
+            "WHERE cannot use numbers"
+          ],
+          "correct": 1
+        }
+      ],
+      "Advanced": [
+        {
+          "q": "What is the purpose of the ROW_NUMBER() OVER (PARTITION BY ... ORDER BY ...) window function?",
+          "options": [
+            "Permanently deletes duplicates",
+            "Assigns sequential ranks within partitioned subsets without collapsing rows",
+            "Merges two tables",
+            "Indexes the primary key"
+          ],
+          "correct": 1
+        }
+      ]
+    }
+  },
+  "arenas": [
+    {
+      "id": 101,
+      "lang": "C++",
+      "level": "Easy",
+      "title": "In Search of an Easy Problem",
+      "desc": "Check if the problem is easy according to n opinions. If at least one person answers 1 (hard), print 'HARD', otherwise print 'EASY'.\n\nInput:\nFirst line contains integer n. Second line contains n integers (0 or 1).\n\nOutput:\nPrint 'EASY' or 'HARD'.",
+      "example": "Input:\n3\n0 0 1\nOutput:\nHARD",
+      "solution": "#include <bits/stdc++.h>\nusing namespace std;\nint main(){\n    int n; cin>>n;\n    for(int i=0;i<n;i++){\n        int x; cin>>x;\n        if(x==1){ cout<<\"HARD\"; return 0; }\n    }\n    cout<<\"EASY\"; return 0;\n}",
+      "keywords": [
+        "cin",
+        "HARD",
+        "EASY"
+      ],
+      "xp": 100,
+      "completed": false,
+      "expectedOutput": "HARD"
+    },
+    {
+      "id": 102,
+      "lang": "C++",
+      "level": "Easy",
+      "title": "Watermelon Division",
+      "desc": "Determine if a watermelon of weight w can be divided into two parts, each weighing an even positive integer of kilos.\n\nInput:\nInteger w (1 <= w <= 100).\n\nOutput:\nPrint 'YES' or 'NO'.",
+      "example": "Input:\n8\nOutput:\nYES",
+      "solution": "#include <iostream>\nusing namespace std;\nint main(){\n    int w; cin>>w;\n    if(w % 2 == 0 && w > 2) cout<<\"YES\";\n    else cout<<\"NO\";\n    return 0;\n}",
+      "keywords": [
+        "w % 2",
+        "w > 2",
+        "YES",
+        "NO"
+      ],
+      "xp": 100,
+      "completed": false,
+      "expectedOutput": "YES"
+    },
+    {
+      "id": 103,
+      "lang": "C++",
+      "level": "Medium",
+      "title": "Reverse Singly Linked List",
+      "desc": "Given the head of a singly linked list in C++, reverse the list iteratively and return the new head pointer.\n\nInput:\nhead pointer to ListNode structure.\n\nOutput:\nReversed head pointer.",
+      "example": "Input: [1, 2, 3, 4, 5]\nOutput: [5, 4, 3, 2, 1]",
+      "solution": "ListNode* reverseList(ListNode* head) {\n    ListNode *prev = nullptr, *curr = head;\n    while(curr){\n        ListNode* nxt = curr->next;\n        curr->next = prev;\n        prev = curr;\n        curr = nxt;\n    }\n    return prev;\n}",
+      "keywords": [
+        "ListNode",
+        "prev",
+        "next"
+      ],
+      "xp": 200,
+      "completed": false,
+      "expectedOutput": "[5, 4, 3, 2, 1]"
+    },
+    {
+      "id": 201,
+      "lang": "C",
+      "level": "Easy",
+      "title": "Reverse String In-Place",
+      "desc": "Write an in-place C function that reverses a character array s without allocating an auxiliary string buffer.\n\nInput:\nchar* s and int sSize.\n\nOutput:\nReversed string array in-place.",
+      "example": "Input: s = [\"h\",\"e\",\"l\",\"l\",\"o\"]\nOutput: [\"o\",\"l\",\"l\",\"e\",\"h\"]",
+      "solution": "void reverseString(char* s, int sSize) {\n    int l = 0, r = sSize - 1;\n    while (l < r) {\n        char tmp = s[l];\n        s[l++] = s[r];\n        s[r--] = tmp;\n    }\n}",
+      "keywords": [
+        "while",
+        "tmp",
+        "sSize"
+      ],
+      "xp": 100,
+      "completed": false,
+      "expectedOutput": "[\"o\",\"l\",\"l\",\"e\",\"h\"]"
+    },
+    {
+      "id": 202,
+      "lang": "C",
+      "level": "Medium",
+      "title": "Floyd's Cycle Detection",
+      "desc": "Given the head pointer of a struct ListNode, determine if the linked list contains a cycle using Floyd's Tortoise and Hare algorithm.\n\nInput:\nstruct ListNode *head\n\nOutput:\ntrue (1) if cycle exists, false (0) otherwise.",
+      "example": "Input: head with cycle at node index 1\nOutput: true",
+      "solution": "bool hasCycle(struct ListNode *head) {\n    if (!head || !head->next) return false;\n    struct ListNode *slow = head, *fast = head;\n    while (fast && fast->next) {\n        slow = slow->next;\n        fast = fast->next->next;\n        if (slow == fast) return true;\n    }\n    return false;\n}",
+      "keywords": [
+        "slow",
+        "fast",
+        "next"
+      ],
+      "xp": 210,
+      "completed": false,
+      "expectedOutput": "true"
+    },
+    {
+      "id": 203,
+      "lang": "C",
+      "level": "Advanced",
+      "title": "Dynamic Matrix Allocator",
+      "desc": "Implement a 2D integer matrix dynamic memory allocator using calloc with proper bounds and defensive NULL cleanup.\n\nInput:\nint rows, int cols\n\nOutput:\nint** double pointer to allocated heap memory.",
+      "example": "Input: rows = 3, cols = 3\nOutput: 3x3 zeroed heap matrix",
+      "solution": "int** allocateMatrix(int r, int c) {\n    int** mat = (int**)malloc(r * sizeof(int*));\n    if (!mat) return NULL;\n    for (int i = 0; i < r; i++) {\n        mat[i] = (int*)calloc(c, sizeof(int));\n        if (!mat[i]) return NULL;\n    }\n    return mat;\n}",
+      "keywords": [
+        "malloc",
+        "calloc",
+        "sizeof"
+      ],
+      "xp": 320,
+      "completed": false,
+      "expectedOutput": "3x3 zeroed heap matrix"
+    },
+    {
+      "id": 301,
+      "lang": "Python",
+      "level": "Easy",
+      "title": "Valid Palindrome Cleaner",
+      "desc": "Determine if a string s reads the same forward and backward after stripping non-alphanumeric characters and converting to lowercase.\n\nInput:\nString s.\n\nOutput:\nBoolean true or false.",
+      "example": "Input: s = \"A man, a plan, a canal: Panama\"\nOutput: True",
+      "solution": "def isPalindrome(s: str) -> bool:\n    cleaned = [c.lower() for c in s if c.isalnum()]\n    return cleaned == cleaned[::-1]",
+      "keywords": [
+        "isalnum",
+        "lower"
+      ],
+      "xp": 100,
+      "completed": false,
+      "expectedOutput": "True"
+    },
+    {
+      "id": 302,
+      "lang": "Python",
+      "level": "Medium",
+      "title": "Group Anagrams Pipeline",
+      "desc": "Given an array of strings strs, group all anagrams together into sublists using dictionary frequency hashing.\n\nInput:\nstrs = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n\nOutput:\n[[\"bat\"],[\"nat\",\"tan\"],[\"ate\",\"eat\",\"tea\"]]",
+      "example": "Input: [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\nOutput: Grouped nested lists",
+      "solution": "from collections import defaultdict\ndef groupAnagrams(strs):\n    groups = defaultdict(list)\n    for s in strs:\n        groups[tuple(sorted(s))].append(s)\n    return list(groups.values())",
+      "keywords": [
+        "defaultdict",
+        "sorted",
+        "values"
+      ],
+      "xp": 220,
+      "completed": false,
+      "expectedOutput": "[['bat'], ['nat', 'tan'], ['ate', 'eat', 'tea']]"
+    },
+    {
+      "id": 303,
+      "lang": "Python",
+      "level": "Advanced",
+      "title": "LRU Cache Decorator Engine",
+      "desc": "Implement a Least Recently Used (LRU) eviction structure with O(1) get and put time complexity using OrderedDict.\n\nInput:\ncapacity = 2, put(1, 1), put(2, 2), get(1), put(3, 3)\n\nOutput:\nkey 2 evicted.",
+      "example": "Input: LRUCache(2)\nOutput: Key access with instant eviction",
+      "solution": "from collections import OrderedDict\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.cap = capacity\n        self.cache = OrderedDict()\n    def get(self, key: int) -> int:\n        if key not in self.cache: return -1\n        self.cache.move_to_end(key)\n        return self.cache[key]\n    def put(self, key: int, val: int) -> None:\n        if key in self.cache: self.cache.move_to_end(key)\n        self.cache[key] = val\n        if len(self.cache) > self.cap: self.cache.popitem(last=False)",
+      "keywords": [
+        "OrderedDict",
+        "move_to_end",
+        "popitem"
+      ],
+      "xp": 350,
+      "completed": false,
+      "expectedOutput": "Key access with instant eviction"
+    },
+    {
+      "id": 401,
+      "lang": "Java",
+      "level": "Easy",
+      "title": "Bracket Matching Validator",
+      "desc": "Given a string s containing '(', ')', '{', '}', '[' and ']', determine if the input string has properly nested and closed brackets.\n\nInput:\nString s = \"()[]{}\"\n\nOutput:\ntrue if valid, false otherwise.",
+      "example": "Input: \"([{}])\"\nOutput: true",
+      "solution": "public boolean isValid(String s) {\n    Stack<Character> st = new Stack<>();\n    for (char c : s.toCharArray()) {\n        if (c == '(') st.push(')');\n        else if (c == '{') st.push('}');\n        else if (c == '[') st.push(']');\n        else if (st.isEmpty() || st.pop() != c) return false;\n    }\n    return st.isEmpty();\n}",
+      "keywords": [
+        "Stack",
+        "push",
+        "pop",
+        "isEmpty"
+      ],
+      "xp": 120,
+      "completed": false,
+      "expectedOutput": "true"
+    },
+    {
+      "id": 402,
+      "lang": "Java",
+      "level": "Medium",
+      "title": "Level Order Binary Tree Traversal",
+      "desc": "Given the root of a binary tree, return the level order traversal of its nodes values from left to right using a Queue.\n\nInput:\nTreeNode root\n\nOutput:\nList<List<Integer>> level hierarchy.",
+      "example": "Input: root = [3,9,20,null,null,15,7]\nOutput: [[3],[9,20],[15,7]]",
+      "solution": "public List<List<Integer>> levelOrder(TreeNode root) {\n    List<List<Integer>> res = new ArrayList<>();\n    if (root == null) return res;\n    Queue<TreeNode> q = new LinkedList<>();\n    q.add(root);\n    while (!q.isEmpty()) {\n        int sz = q.size();\n        List<Integer> lvl = new ArrayList<>();\n        for (int i = 0; i < sz; i++) {\n            TreeNode n = q.poll();\n            lvl.add(n.val);\n            if (n.left != null) q.add(n.left);\n            if (n.right != null) q.add(n.right);\n        }\n        res.add(lvl);\n    }\n    return res;\n}",
+      "keywords": [
+        "Queue",
+        "LinkedList",
+        "poll",
+        "add"
+      ],
+      "xp": 230,
+      "completed": false,
+      "expectedOutput": "[[3],[9,20],[15,7]]"
+    },
+    {
+      "id": 403,
+      "lang": "Java",
+      "level": "Advanced",
+      "title": "Concurrent Thread-Safe Bounded Buffer",
+      "desc": "Implement a producer-consumer bounded queue in Java utilizing ReentrantLock and Condition variables.\n\nInput:\ncapacity = 5\n\nOutput:\nThread-safe put() and take() with wait/signal handling.",
+      "example": "Input: 2 producers, 2 consumers\nOutput: Coordinated buffer exchange",
+      "solution": "class BoundedBuffer {\n    final Lock lock = new ReentrantLock();\n    final Condition notFull  = lock.newCondition();\n    final Condition notEmpty = lock.newCondition();\n    final Object[] items = new Object[100];\n    int putptr, takeptr, count;\n    public void put(Object x) throws InterruptedException {\n        lock.lock();\n        try {\n            while (count == items.length) notFull.await();\n            items[putptr] = x;\n            if (++putptr == items.length) putptr = 0;\n            ++count;\n            notEmpty.signal();\n        } finally { lock.unlock(); }\n    }\n}",
+      "keywords": [
+        "ReentrantLock",
+        "Condition",
+        "await",
+        "signal"
+      ],
+      "xp": 360,
+      "completed": false,
+      "expectedOutput": "Coordinated buffer exchange"
+    },
+    {
+      "id": 501,
+      "lang": "JavaScript",
+      "level": "Easy",
+      "title": "Duplicate Array Element Detector",
+      "desc": "Given an integer array nums, return true if any element appears at least twice in the array using Set deduplication.\n\nInput:\nnums = [1, 2, 3, 1]\n\nOutput:\ntrue",
+      "example": "Input: [1, 2, 3, 4]\nOutput: false",
+      "solution": "function containsDuplicate(nums) {\n    return new Set(nums).size !== nums.length;\n}",
+      "keywords": [
+        "Set",
+        "size",
+        "length"
+      ],
+      "xp": 100,
+      "completed": false,
+      "expectedOutput": "false"
+    },
+    {
+      "id": 502,
+      "lang": "JavaScript",
+      "level": "Medium",
+      "title": "Longest Non-Repeating Substring",
+      "desc": "Given a string s, find the length of the longest substring without repeating characters using a sliding window and Map.\n\nInput:\ns = \"abcabcbb\"\n\nOutput:\n3",
+      "example": "Input: \"bbbbb\"\nOutput: 1",
+      "solution": "function lengthOfLongestSubstring(s) {\n    let map = new Map(), left = 0, max = 0;\n    for (let right = 0; right < s.length; right++) {\n        if (map.has(s[right])) left = Math.max(map.get(s[right]) + 1, left);\n        map.set(s[right], right);\n        max = Math.max(max, right - left + 1);\n    }\n    return max;\n}",
+      "keywords": [
+        "Map",
+        "Math.max",
+        "set"
+      ],
+      "xp": 210,
+      "completed": false,
+      "expectedOutput": "1"
+    },
+    {
+      "id": 503,
+      "lang": "JavaScript",
+      "level": "Advanced",
+      "title": "Custom Promise.all Implementation",
+      "desc": "Implement a custom promiseAll function that takes an iterable of promises and returns a single promise that resolves with an array of values.\n\nInput:\nArray of promises [p1, p2, p3]\n\nOutput:\nPromise resolving to array of resolved values in order.",
+      "example": "Input: [Promise.resolve(1), Promise.resolve(2)]\nOutput: [1, 2]",
+      "solution": "function promiseAll(promises) {\n    return new Promise((resolve, reject) => {\n        let results = [], resolvedCount = 0;\n        if (promises.length === 0) return resolve(results);\n        promises.forEach((p, index) => {\n            Promise.resolve(p).then(val => {\n                results[index] = val;\n                resolvedCount++;\n                if (resolvedCount === promises.length) resolve(results);\n            }).catch(reject);\n        });\n    });\n}",
+      "keywords": [
+        "new Promise",
+        "resolve",
+        "reject",
+        "forEach"
+      ],
+      "xp": 340,
+      "completed": false,
+      "expectedOutput": "[1, 2]"
+    },
+    {
+      "id": 601,
+      "lang": "HTML",
+      "level": "Easy",
+      "title": "Semantic Accessible Search Form",
+      "desc": "Construct an accessible semantic search form with proper label binding, role='search', and screen-reader compliant input attributes.\n\nInput:\nSearch query input\n\nOutput:\nValid HTML markup snippet.",
+      "example": "Output:\n<form role=\"search\"><label for=\"q\">Search</label><input id=\"q\" type=\"search\"/></form>",
+      "solution": "<form role=\"search\" action=\"/search\" method=\"GET\">\n  <label for=\"site-search\">Search Documentation:</label>\n  <input type=\"search\" id=\"site-search\" name=\"q\" aria-label=\"Search through site content\" required>\n  <button type=\"submit\">Search</button>\n</form>",
+      "keywords": [
+        "role=\"search\"",
+        "aria-label",
+        "label",
+        "input"
+      ],
+      "xp": 100,
+      "completed": false,
+      "expectedOutput": "<form role=\"search\"><label for=\"q\">Search</label><input id=\"q\" type=\"search\"/></form>"
+    },
+    {
+      "id": 602,
+      "lang": "HTML",
+      "level": "Medium",
+      "title": "Responsive Picture Element with WebP",
+      "desc": "Build a responsive <picture> element providing WebP image sources for high-density desktop displays, with a fallback <img> element.\n\nInput:\nDesktop and Mobile art direction images\n\nOutput:\nValid HTML5 <picture> element structure.",
+      "example": "Output:\n<picture><source media=\"(min-width: 800px)\" srcset=\"img.webp\"/><img src=\"fallback.jpg\" alt=\"Landscape\"/></picture>",
+      "solution": "<picture>\n  <source media=\"(min-width: 1024px)\" srcset=\"banner-large.webp\" type=\"image/webp\">\n  <source media=\"(min-width: 640px)\" srcset=\"banner-medium.webp\" type=\"image/webp\">\n  <img src=\"banner-fallback.jpg\" alt=\"Engineering Roadmap Architecture\" loading=\"lazy\" width=\"800\" height=\"450\">\n</picture>",
+      "keywords": [
+        "<picture>",
+        "<source",
+        "srcset",
+        "loading=\"lazy\""
+      ],
+      "xp": 180,
+      "completed": false,
+      "expectedOutput": "<picture><source media=\"(min-width: 800px)\" srcset=\"img.webp\"/><img src=\"fallback.jpg\" alt=\"Landscape\"/></picture>"
+    },
+    {
+      "id": 603,
+      "lang": "HTML",
+      "level": "Advanced",
+      "title": "Shadow DOM Web Component Template",
+      "desc": "Define an HTML <template> containing scoped stylesheet definitions and slot content for a reusable custom web component.\n\nInput:\nCustom Element Component Template\n\nOutput:\nValid <template> tag with Shadow DOM <slot> bindings.",
+      "example": "Output:\n<template id=\"card\"><style>:host { display: block; }</style><slot name=\"title\"></slot></template>",
+      "solution": "<template id=\"user-card-template\">\n  <style>\n    :host { display: block; contain: content; font-family: sans-serif; }\n    .card { padding: 1rem; border-radius: 8px; border: 1px solid #ccc; }\n  </style>\n  <div class=\"card\">\n    <slot name=\"header\"></slot>\n    <slot name=\"content\"></slot>\n  </div>\n</template>",
+      "keywords": [
+        "<template",
+        "<style>",
+        "<slot",
+        ":host"
+      ],
+      "xp": 280,
+      "completed": false,
+      "expectedOutput": "<template id=\"card\"><style>:host { display: block; }</style><slot name=\"title\"></slot></template>"
+    },
+    {
+      "id": 701,
+      "lang": "CSS",
+      "level": "Easy",
+      "title": "Centered Modal Overlay via Flexbox",
+      "desc": "Write CSS rules to create a fixed backdrop overlay that places a modal card dead-center horizontally and vertically.\n\nInput:\n.modal-backdrop and .modal-card\n\nOutput:\nCSS flexbox centering rules.",
+      "example": "Output:\ndisplay: flex; justify-content: center; align-items: center;",
+      "solution": ".modal-backdrop {\n  position: fixed;\n  inset: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background: rgba(0, 0, 0, 0.75);\n  backdrop-filter: blur(8px);\n}",
+      "keywords": [
+        "display: flex",
+        "justify-content",
+        "align-items"
+      ],
+      "xp": 100,
+      "completed": false,
+      "expectedOutput": "display: flex; justify-content: center; align-items: center;"
+    },
+    {
+      "id": 702,
+      "lang": "CSS",
+      "level": "Medium",
+      "title": "Responsive CSS Grid Auto-Fit Layout",
+      "desc": "Implement a fluid, media-query-free grid using grid-template-columns, repeat, auto-fit, and minmax.\n\nInput:\n.card-container\n\nOutput:\nCSS grid definition with 280px minimum column width.",
+      "example": "Output:\ngrid-template-columns: repeat(auto-fit, minmax(280px, 1fr));",
+      "solution": ".card-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));\n  gap: 1.5rem;\n  padding: 1rem;\n}",
+      "keywords": [
+        "display: grid",
+        "repeat",
+        "auto-fit",
+        "minmax"
+      ],
+      "xp": 190,
+      "completed": false,
+      "expectedOutput": "grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));"
+    },
+    {
+      "id": 703,
+      "lang": "CSS",
+      "level": "Advanced",
+      "title": "Fluid Typography with CSS Clamp & Container Query",
+      "desc": "Implement fluid responsive scaling typography using the CSS clamp() function and @container query units.\n\nInput:\nContainer query rule for responsive heading typography\n\nOutput:\nCSS rules combining @container and clamp().",
+      "example": "Output:\nfont-size: clamp(1.25rem, 4cqi + 1rem, 2.5rem);",
+      "solution": "@container (min-width: 400px) {\n  .article-title {\n    font-size: clamp(1.5rem, 5cqi + 1rem, 3rem);\n    line-height: 1.15;\n    letter-spacing: -0.02em;\n  }\n}",
+      "keywords": [
+        "@container",
+        "clamp",
+        "font-size"
+      ],
+      "xp": 300,
+      "completed": false,
+      "expectedOutput": "font-size: clamp(1.25rem, 4cqi + 1rem, 2.5rem);"
+    }
+  ]
+}
