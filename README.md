@@ -2,7 +2,7 @@
 
 # AROHA
 
-<img src="./logo.png" alt="AROHA Logo" width="180" height="180" style="border-radius: 24px;" />
+<img src="./logo-dark.svg" alt="AROHA Logo" width="180" height="180" />
 
 ### Pinpoint exact technical deficiencies, bridge skill gaps, and master software engineering.<br/>Your career. Your roadmap.
 
